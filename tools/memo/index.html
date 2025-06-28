@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>임시 메모장 - dozinavi.com</title>
+  <meta name="description" content="브라우저에 자동 저장되는 간단한 메모장입니다." />
+  <meta property="og:title" content="임시 메모장 - dozinavi.com" />
+  <meta property="og:description" content="브라우저 저장소에 자동 저장되며 최대 20개의 메모를 보관합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tools.dozinavi.com/memo" />
+  <meta property="og:image" content="https://tools.dozinavi.com/og-memo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <div class="container">
+    <h1>📝 임시 메모장</h1>
+
+    <textarea id="memoArea" placeholder="메모를 입력하세요..."></textarea>
+
+    <div class="button-group">
+      <button id="saveBtn">저장</button>
+      <button id="clearBtn">초기화</button>
+    </div>
+
+    <div class="notice">
+      ⚠️ 이 메모장은 <strong>브라우저 저장소(localStorage)</strong>에 자동 저장됩니다.<br />
+      캐시 삭제 또는 브라우저 설정 초기화 시 메모가 <strong>영구 삭제</strong>됩니다.
+    </div>
+
+    <div class="info-text">🕒 마지막 저장: <span id="lastSaved">없음</span></div>
+
+    <h2>📒 저장된 메모</h2>
+    <ul id="memoList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>이미지 변환기 – JPEG·PNG·WEBP·GIF</title>
+  <meta name="description" content="브라우저에서 JPEG, PNG, WEBP, BMP, 정적 GIF 이미지를 변환하고 용량을 조절해 보세요. 서버 전송 없이 안전하게 작동합니다."/>
+
+    <!-- Open Graph -->
+  <meta property="og:title" content="이미지 변환기 – PNG, JPG, WEBP 변환 도구">
+  <meta property="og:description" content="이미지를 손쉽게 PNG, JPG, WEBP로 변환하고 용량까지 확인하세요. 설치 없이 브라우저에서 바로 사용 가능!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.dozinavi.com/convert">
+  <meta property="og:image" content="https://tools.dozinavi.com/convert/preview.png"> <!-- 썸네일 이미지 경로 -->
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="이미지 변환기 – PNG, JPG, WEBP 변환 도구">
+  <meta name="twitter:description" content="JPEG, PNG, WEBP로 이미지 포맷을 빠르게 변환해보세요. 브라우저에서 직접 변환 & 다운로드!">
+  <meta name="twitter:image" content="https://tools.dozinavi.com/convert/preview.png">
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <main class="container">
+    <h1>🖼 이미지 포맷 변환기</h1>
+    <p class="description">브라우저 내에서 이미지를 변환하고 용량을 최적화하세요.</p>
+
+    <section class="usage">
+      <h2>지원 포맷</h2>
+      <ul>
+        <li><strong>입력</strong>: 브라우저가 지원하는 모든 이미지 (JPEG, PNG, WEBP, BMP, 정적 GIF 등)</li>
+        <li><strong>출력</strong>: PNG / JPG(JPEG) / WEBP</li>
+      </ul>
+      <h2>사용 방법</h2>
+      <ol>
+        <li>이미지를 업로드하거나 드래그 앤 드롭합니다.</li>
+        <li>“이미지 형식 → 변환 포맷” 영역에서 원하는 출력 형식을 선택합니다.</li>
+        <li>품질 슬라이더로 압축 정도를 조절하면 예상 용량이 자동 계산됩니다.<br/><em>(PNG는 무손실, 품질 옵션 무시)</em></li>
+        <li>“변환 및 다운로드” 버튼을 클릭하면 이미지가 다운로드되고 페이지가 자동 리셋됩니다.</li>
+      </ol>
+      <p class="note">※ HEIC, TIFF 등 일부 특수 포맷은 업로드가 제한될 수 있습니다.</p>
+    </section>
+
+    <section class="upload-box">
+      <div id="dropZone" class="drop-zone">이미지를 여기로 드래그하거나 클릭하세요</div>
+      <input id="imageInput" type="file" accept="image/*" hidden>
+      <div id="fileInfo" class="file-info">
+        <span id="fileType"></span>
+        <span class="arrow">→</span>
+        <select id="format" class="format-select">
+          <option value="image/png">PNG</option>
+          <option value="image/jpeg">JPG</option>
+          <option value="image/webp">WEBP</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="quality-area">
+      <div id="qualityBox" class="quality-box">
+        <label for="quality">품질: <span id="qualityLabel">80%</span></label>
+        <input id="quality" type="range" min="0.1" max="1" step="0.1" value="0.8">
+      </div>
+      <div id="expectedSize" class="result-size">예상 용량: – KB</div>
+    </div>
+
+    <div id="previewArea" class="preview"></div>
+
+    <button id="convertBtn">변환 및 다운로드</button>
+    <div id="resultSize" class="result-size"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

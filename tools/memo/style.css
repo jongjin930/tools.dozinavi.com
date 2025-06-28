@@ -1,0 +1,145 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 100px auto 20px;  /* 버튼 아래 충분한 여백 확보 */
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.notice {
+  margin-top: 15px;
+  background: #fff3cd;
+  padding: 10px;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #856404;
+}
+
+.info-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: right;
+}
+
+#memoList {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+#memoList li {
+  background: #f1f1f1;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#memoList li:hover {
+  background: #f0f0f0;
+}
+
+/* ← 다른 도구 더 보기 버튼 */
+.home-button {
+  position: fixed;
+  top: 12px;               
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;      
+  background-color: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.3em;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+}
+
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: -75%; }
+}
+
+@media (max-width: 600px) {
+  .home-button {
+    font-size: 1.1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}

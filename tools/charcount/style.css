@@ -1,0 +1,134 @@
+body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: #f9f9fc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* 컨테이너가 버튼 아래에서 시작하도록 충분한 여백 확보 */
+.container {
+  max-width: 720px;
+  margin: 100px auto 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.button-group {
+  margin-top: 10px;
+  text-align: right;
+}
+
+button#copyBtn {
+  padding: 8px 14px;
+  font-size: 0.95em;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#copyBtn:hover {
+  background-color: #45a045;
+}
+
+.result-box {
+  margin-top: 20px;
+  background: #f2f3f7;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* ← 다른 도구 더 보기 버튼 */
+.home-button {
+  position: fixed;
+  top: 12px;               /* 상단에서 약간 내려오도록 */
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;      /* 버튼 크기 확대 */
+  background-color: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.3em;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 진한 그림자 */
+  overflow: hidden;         /* shine 이펙트가 밖으로 넘치지 않도록 */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+}
+
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: -75%; }
+}
+
+/* 반응형 대응 */
+@media (max-width: 600px) {
+  .container {
+    margin: 80px 10px 20px;
+    padding: 15px;
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  button#copyBtn {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .button-group {
+    text-align: center;
+  }
+
+  .home-button {
+    font-size: 1.1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}

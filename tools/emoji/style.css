@@ -1,0 +1,121 @@
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  margin-top: 70px; /* 버튼과 겹치지 않도록 충분한 여백 확보 */
+  background: #fff;
+  padding: 1em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.5em;
+}
+
+#search {
+  margin: 1em auto;
+  padding: 0.5em;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1em;
+}
+
+#categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+.category {
+  background: #ddd;
+  padding: 0.4em 0.8em;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.emoji-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+.emoji-item {
+  font-size: 2em;
+  cursor: pointer;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5em;
+  transition: transform 0.1s;
+}
+
+.emoji-item:hover {
+  transform: scale(1.2);
+}
+
+#copied {
+  margin-top: 1em;
+  font-size: 1em;
+  color: green;
+}
+
+/* ← 다른 도구 더 보기 버튼 */
+.home-button {
+  position: fixed;
+  top: 12px;            /* 상단에서 약간 내려오도록 여백 추가 */
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;   /* 버튼 크기 확대 */
+  background-color: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.3em;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 진한 그림자 */
+  overflow: hidden;      /* shine 이펙트가 밖으로 넘치지 않도록 */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+  position: fixed;
+}
+
+/* 호버 시 그림자 진하게 + 살짝 떠오름 */
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* shine effect */
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: -75%; }
+}
+
+@media (max-width: 600px) {
+  .home-button {
+    font-size: 1.1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}
