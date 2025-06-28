@@ -1,5 +1,5 @@
 [
-  // 얼굴/표정
+
   { "emoji": "😀", "name": "활짝 웃는 얼굴", "category": "얼굴/표정" },
   { "emoji": "😁", "name": "눈웃음", "category": "얼굴/표정" },
   { "emoji": "😂", "name": "기쁨의 눈물", "category": "얼굴/표정" },
@@ -49,7 +49,7 @@
   { "emoji": "😕", "name": "당황", "category": "얼굴/표정" },
   { "emoji": "🙃", "name": "뒤집힌 얼굴", "category": "얼굴/표정" },
 
-  // 사람/행동
+  
   { "emoji": "🙋‍♂️", "name": "손드는 남자", "category": "사람/행동" },
   { "emoji": "🙋‍♀️", "name": "손드는 여자", "category": "사람/행동" },
   { "emoji": "🙆‍♀️", "name": "OK 제스처 여자", "category": "사람/행동" },
@@ -73,7 +73,7 @@
   { "emoji": "🤌", "name": "이탈리아 손짓", "category": "사람/행동" },
   { "emoji": "👏", "name": "박수", "category": "사람/행동" },
 
-  // 동물/자연
+  
   { "emoji": "🐶", "name": "강아지", "category": "동물/자연" },
   { "emoji": "🐱", "name": "고양이", "category": "동물/자연" },
   { "emoji": "🐭", "name": "쥐", "category": "동물/자연" },
@@ -96,7 +96,7 @@
   { "emoji": "🐬", "name": "돌고래", "category": "동물/자연" },
   { "emoji": "🌳", "name": "나무", "category": "동물/자연" },
 
-  // 음식/음료
+  
   { "emoji": "🍔", "name": "햄버거", "category": "음식/음료" },
   { "emoji": "🍟", "name": "감자튀김", "category": "음식/음료" },
   { "emoji": "🍕", "name": "피자", "category": "음식/음료" },
@@ -118,7 +118,7 @@
   { "emoji": "☕", "name": "커피", "category": "음식/음료" },
   { "emoji": "🥤", "name": "음료수", "category": "음식/음료" },
 
-  // 스포츠/활동
+  
   { "emoji": "⚽", "name": "축구공", "category": "스포츠/활동" },
   { "emoji": "🏀", "name": "농구공", "category": "스포츠/활동" },
   { "emoji": "🏈", "name": "미식축구공", "category": "스포츠/활동" },
@@ -137,7 +137,7 @@
   { "emoji": "🎯", "name": "다트", "category": "스포츠/활동" },
   { "emoji": "🏆", "name": "트로피", "category": "스포츠/활동" },
 
-  // 탈것/교통
+  
   { "emoji": "🚗", "name": "자동차", "category": "탈것/교통" },
   { "emoji": "🚕", "name": "택시", "category": "탈것/교통" },
   { "emoji": "🚌", "name": "버스", "category": "탈것/교통" },
@@ -155,7 +155,7 @@
   { "emoji": "🚀", "name": "로켓", "category": "탈것/교통" },
   { "emoji": "🛴", "name": "킥보드", "category": "탈것/교통" },
 
-  // 장소/건물
+  
   { "emoji": "🏠", "name": "집", "category": "장소/건물" },
   { "emoji": "🏡", "name": "단독주택", "category": "장소/건물" },
   { "emoji": "🏢", "name": "사무실", "category": "장소/건물" },
@@ -167,7 +167,7 @@
   { "emoji": "🏰", "name": "성", "category": "장소/건물" },
   { "emoji": "🏯", "name": "일본성", "category": "장소/건물" },
 
-  // 시간/날씨
+  
   { "emoji": "⏰", "name": "알람 시계", "category": "시간/날씨" },
   { "emoji": "🕰️", "name": "탁상시계", "category": "시간/날씨" },
   { "emoji": "📅", "name": "달력", "category": "시간/날씨" },
@@ -180,7 +180,7 @@
   { "emoji": "❄️", "name": "눈송이", "category": "시간/날씨" },
   { "emoji": "🌈", "name": "무지개", "category": "시간/날씨" },
 
-  // 사물/도구
+  
   { "emoji": "📱", "name": "스마트폰", "category": "사물/도구" },
   { "emoji": "💻", "name": "노트북", "category": "사물/도구" },
   { "emoji": "🖥️", "name": "데스크탑", "category": "사물/도구" },
@@ -192,7 +192,7 @@
   { "emoji": "🧯", "name": "소화기", "category": "사물/도구" },
   { "emoji": "📦", "name": "박스", "category": "사물/도구" },
 
-  // 상징/기호/화살표
+  
   { "emoji": "❤️", "name": "빨간 하트", "category": "상징/기호" },
   { "emoji": "🧡", "name": "주황 하트", "category": "상징/기호" },
   { "emoji": "💛", "name": "노란 하트", "category": "상징/기호" },
