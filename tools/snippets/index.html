@@ -1,0 +1,53 @@
+<!-- /tools/snippets/index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>나만의 문구 저장소 - 도지나비</title>
+  <meta name="description" content="자주 쓰는 문구를 제목과 함께 저장하고, 클릭 한 번으로 복사하세요. 블로거와 작가를 위한 개인 콘텐츠 저장소입니다.">
+  <meta property="og:title" content="나만의 문구 저장소 - 도지나비" />
+  <meta property="og:description" content="자주 쓰는 문구를 카드로 저장하고, 클릭 한 번으로 복사하세요." />
+  <meta property="og:image" content="https://dozinavi.com/og-snippets.png" />
+  <meta property="og:url" content="https://tools.dozinavi.com/snippets" />
+  <meta property="og:type" content="website" />
+
+  <!-- 다른 도구 버튼 템플릿 -->
+  <link rel="stylesheet" href="/home-button.css" />
+  <!-- 이 페이지 전용 스타일 -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 1) body 최상단에 버튼 컴포넌트 삽입 -->
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <h1 class="page-title">나만의 문구 저장소</h1>
+  <p class="subtitle">문구를 저장하고, 클릭 한 번으로 복사해서 블로그·문서 작성에 바로 활용해보세요.</p>
+
+
+  <!-- 사용 방법 & 주의사항 -->
+  <div class="notice">
+    • 문구 입력 후 “저장하기” 클릭 → 카드 생성<br>
+    • 카드 클릭 시 자동 복사<br>
+    • ✏️ 편집 클릭 → 입력폼에 불러와짐 → 수정 후 “저장하기” 클릭하면 새 카드 생성<br>
+    • ✖ 삭제 클릭 → 즉시 삭제<br>
+     <span class="warning">⚠️ 저장된 문구는 브라우저에만 저장되며, 캐시나 데이터를 삭제하면 함께 사라질 수 있습니다.</span>
+  </div>
+
+  <div class="form-group">
+    <label for="title">문구 제목</label>
+    <input type="text" id="title" placeholder="예: 블로그 인삿말">
+  </div>
+  <div class="form-group">
+    <label for="content">문구 내용</label>
+    <textarea id="content" rows="4" placeholder="자주 쓰는 문구를 입력하세요."></textarea>
+  </div>
+  <button id="saveBtn">저장하기</button>
+
+  <div class="snippets" id="snippetsList"></div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
