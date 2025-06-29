@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대소문자 변환기 - 도지나비</title>
+  <meta name="description" content="텍스트를 대문자, 소문자, 첫글자 대문자, 대소문자 반전으로 변환하는 간단한 도구입니다.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="대소문자 변환기 - 도지나비">
+  <meta property="og:description" content="텍스트를 대문자, 소문자, 첫글자 대문자, 대소문자 반전으로 변환하는 간단한 도구입니다.">
+  <meta property="og:image" content="https://dozinavi.com/og-image.png">
+  <meta property="og:url" content="https://tools.dozinavi.com/case-converter">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <header>
+    <h1>🔤 대소문자 변환기</h1>
+  </header>
+
+  <main>
+    <textarea id="inputText" placeholder="변환할 문장을 입력하세요..."></textarea>
+
+    <div class="button-group">
+      <button id="upperBtn">대문자로</button>
+      <button id="lowerBtn">소문자로</button>
+      <button id="capBtn">첫글자만 대문자</button>
+      <button id="toggleBtn">대소문자 반전</button>
+      <button id="copyBtn">복사하기</button>
+    </div>
+
+    <textarea id="outputText" readonly placeholder="결과가 여기에 표시됩니다."></textarea>
+  </main>
+
+  <footer>
+    <p>ⓒ 2025 도지나비 - 실용 웹도구 모음</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
