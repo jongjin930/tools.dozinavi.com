@@ -1,0 +1,160 @@
+/* 파일: text-cleaner.css */
+
+/* “🏠 다른 도구 더 보기” 버튼 */
+.home-button {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;
+  background-color: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.3em;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+}
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: -75%; }
+}
+@media (max-width: 600px) {
+  .home-button {
+    font-size: 1.1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}
+
+/* 기본 레이아웃 */
+body {
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+.container {
+  max-width: 800px;
+  margin: 100px auto 40px;
+  padding: 0 16px;
+}
+h1 {
+  margin-bottom: 16px;
+  font-size: 2em;
+}
+textarea {
+  width: 100%;
+  height: 180px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+/* 옵션 버튼 그룹 */
+.options-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.opt-btn {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.95em;
+  user-select: none;
+  box-sizing: border-box;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.opt-btn strong {
+  display: block;
+  margin-bottom: 4px;
+}
+.opt-btn small {
+  font-size: 0.85em;
+  color: #555;
+}
+
+/* 활성화 시 */
+.opt-btn[data-active="true"] {
+  background-color: #d0f0ff;
+  border-color: #7cd6ff;
+  box-shadow: 0 2px 6px rgba(0, 128, 192, 0.15);
+  opacity: 1 !important;
+}
+
+/* 비활성화 시 */
+.opt-btn[data-active="false"] {
+  background-color: #eee !important;
+  border-color: #ccc !important;
+  box-shadow: none !important;
+  opacity: 0.5 !important;
+}
+
+/* hover/focus 효과 제거 */
+.opt-btn[data-active="true"]:hover,
+.opt-btn[data-active="true"]:focus,
+.opt-btn[data-active="true"]:active,
+.opt-btn[data-active="true"]:focus-visible,
+.opt-btn[data-active="false"]:hover,
+.opt-btn[data-active="false"]:focus,
+.opt-btn[data-active="false"]:active,
+.opt-btn[data-active="false"]:focus-visible {
+  background-color: inherit !important;
+  border-color: inherit !important;
+  box-shadow: inherit !important;
+  outline: none !important;
+}
+
+/* 옵션 하단 구분선 */
+.divider-line {
+  grid-column: 1 / -1;
+  border-top: 1px solid #ccc;
+  margin: 4px 0;
+  height: 0;
+}
+
+/* 버튼 */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 8px 4px 0 0;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  background-color: #0066cc;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+button:hover {
+  background-color: #004999;
+}
