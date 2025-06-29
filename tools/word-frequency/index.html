@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>단어 빈도수 분석기 - 도지나비</title>
+  <meta name="description" content="입력한 글에서 자주 사용된 단어를 분석하여 빈도순으로 정리해주는 도구입니다." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="단어 빈도수 분석기 - 도지나비" />
+  <meta property="og:description" content="입력한 글에서 자주 사용된 단어를 분석하여 빈도순으로 정리해주는 도구입니다." />
+  <meta property="og:image" content="https://dozinavi.com/og-image.png" />
+  <meta property="og:url" content="https://tools.dozinavi.com/word-frequency" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="home-button.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <header>
+    <h1>📊 단어 빈도수 분석기</h1>
+  </header>
+
+  <main>
+    <textarea id="inputText" placeholder="분석할 문장을 입력하세요..."></textarea>
+
+    <div class="button-group">
+      <button id="analyzeBtn">분석하기</button>
+      <button id="resetBtn">초기화</button>
+    </div>
+
+    <div id="resultArea"></div>
+  </main>
+
+  <footer>
+    <p>ⓒ 2025 도지나비 - 실용 웹도구 모음</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

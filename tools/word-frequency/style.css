@@ -1,0 +1,284 @@
+/* style.css - 단어 빈도수 분석기 최종 스타일 */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  padding-top: 90px;    /* 홈버튼과 겹치지 않도록 여백 확보 */
+  padding-bottom: 1rem;
+}
+
+main {
+  padding: 0 1rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 1rem;
+  font-size: 1rem;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group {
+  margin: 1rem 0;
+  display: flex;
+  gap: 8px;
+}
+
+.button-group button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button-group button:hover {
+  background-color: #2581c4;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.result-row .word {
+  width: 120px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.result-row .count {
+  width: 50px;
+  text-align: right;
+  color: #555;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.result-row .bar {
+  height: 20px;
+  border-radius: 4px;
+  color: #fff;
+  text-align: right;
+  padding-right: 6px;
+  font-size: 0.85rem;
+  width: 0; /* JS에서 비율로 지정 */
+  transition: width 0.3s;
+}
+
+.more-buttons {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.more-buttons button {
+  margin: 0 6px;
+  padding: 0.5rem 1rem;
+  background-color: #2c3e50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.more-buttons button:hover {
+  background-color: #1f2d3a;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #999;
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+}
+/* style.css - home-button + 전체 UI 통합 스타일 */
+
+/* 고정 홈 버튼 스타일 */
+.home-button {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;
+  background-color: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.2em;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+}
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: -75%; }
+}
+@media (max-width: 600px) {
+  .home-button {
+    font-size: 1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}
+
+/* 본문 스타일 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  padding-top: 90px;
+  padding-bottom: 1rem;
+}
+
+main {
+  padding: 0 1rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 1rem;
+  font-size: 1rem;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group {
+  margin: 1rem 0;
+  display: flex;
+  gap: 8px;
+}
+
+.button-group button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button-group button:hover {
+  background-color: #2581c4;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.result-row .word {
+  width: 120px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.result-row .count {
+  width: 50px;
+  text-align: right;
+  color: #555;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.result-row .bar {
+  height: 20px;
+  border-radius: 4px;
+  color: #fff;
+  text-align: right;
+  padding-right: 6px;
+  font-size: 0.85rem;
+  width: 0;
+  transition: width 0.3s;
+}
+
+.more-buttons {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.more-buttons button {
+  margin: 0 6px;
+  padding: 0.5rem 1rem;
+  background-color: #2c3e50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.more-buttons button:hover {
+  background-color: #1f2d3a;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #999;
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+}
