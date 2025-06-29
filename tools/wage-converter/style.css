@@ -1,0 +1,137 @@
+/* style.css */
+/* ─────────────────────────────────────────────────────────── */
+/* home-button.css 통합 (버튼템플릿) */
+.home-button {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;
+  background-color: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.3em;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+}
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0%   { left: -75%; }
+  50%  { left: 125%; }
+  100% { left: -75%; }
+}
+@media (max-width: 600px) {
+  .home-button {
+    font-size: 1.1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}
+/* ─────────────────────────────────────────────────────────── */
+
+body {
+  font-family: sans-serif;
+  padding: 80px 20px 20px;
+  background: #f9f9f9;
+  color: #333;
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.converter .direction {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.inputs label {
+  display: block;
+  margin-bottom: 12px;
+}
+.time-input,
+.days-mode {
+  margin-bottom: 12px;
+}
+select {
+  padding: 6px;
+  margin: 0 4px;
+}
+.checkbox-highlight {
+  display: inline-block;
+  background: #ffecb3;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.results {
+  margin-top: 16px;
+  text-align: center;
+}
+#resultBox {
+  background: #e3f2fd;
+  padding: 16px;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  margin-bottom: 8px;
+}
+#copyBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #0066cc;
+  color: #fff;
+  cursor: pointer;
+}
+#copyBtn:hover {
+  background: #0055aa;
+}
+.notice {
+  background: #fff8e1;
+  border: 1px solid #ffd54f;
+  padding: 16px;
+  margin-top: 24px;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+.notice h2 {
+  margin-top: 0;
+  font-size: 1.1em;
+  color: #bf360c;
+}
+.notice p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
