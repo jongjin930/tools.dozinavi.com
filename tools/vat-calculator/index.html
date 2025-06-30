@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="부가세 계산기 - 공급가 또는 총액 기준으로 부가세 10%를 쉽게 계산하세요." />
+  <meta property="og:title" content="부가세 계산기 | DoziNavi" />
+  <meta property="og:description" content="공급가 또는 총액 기준으로 부가세(10%)를 계산해보세요." />
+  <title>부가세 계산기</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <div class="container">
+    <h1>부가세 계산기</h1>
+    <p class="description">공급가 또는 총액 기준으로 부가세(10%)를 계산해보세요.</p>
+
+    <div class="toggle">
+      <button id="mode-supply" class="active">공급가 기준</button>
+      <button id="mode-total">총액 기준</button>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="value-input" placeholder="예: 1,000,000" />
+    </div>
+
+    <div class="result-area">
+      <div class="result-row">
+        <div class="label">공급가액</div>
+        <div class="value"><span id="supply-value">0</span> 원</div>
+      </div>
+      <div class="result-row">
+        <div class="label">부가세(10%)</div>
+        <div class="value"><span id="vat-value">0</span> 원</div>
+      </div>
+      <div class="result-row total">
+        <div class="label">총액</div>
+        <div class="value"><span id="total-value">0</span> 원</div>
+      </div>
+    </div>
+
+    <button id="copy-btn">📋 복사</button>
+
+    <div class="notice-box">
+      ※ 계산 결과는 참고용입니다. <br />
+      세무상 정확한 금액은 세무사와 확인하시기 바랍니다.
+    </div>
+  </div>
+
+  <div id="toast" class="toast">📋 복사되었습니다!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
