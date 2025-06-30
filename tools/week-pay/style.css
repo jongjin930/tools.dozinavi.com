@@ -1,0 +1,142 @@
+/* 기본 스타일 */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fcfcfc;
+  color: #333;
+  max-width: 700px;
+  margin: 80px auto 40px;
+  padding: 0 1rem;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.page-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #3498db;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  color: #555;
+}
+
+.notice {
+  background: #f0f8ff;
+  padding: 1rem;
+  border-left: 4px solid #3498db;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-top: 1rem;
+}
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+input {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+#calculateBtn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#calculateBtn:hover {
+  background-color: #005bb5;
+}
+
+.result {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #eaf6ff;
+  border-left: 4px solid #3498db;
+  border-radius: 5px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* 🏠 다른 도구 더 보기 버튼 */
+.home-button {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  padding: 14px 24px;
+  background-color: #0066cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.3em;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 999;
+}
+.home-button:hover {
+  background-color: #004999;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-30deg);
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0% { left: -75%; }
+  50% { left: 125%; }
+  100% { left: -75%; }
+}
+@media (max-width: 600px) {
+  .home-button {
+    font-size: 1.1em;
+    padding: 10px 16px;
+    top: 10px;
+  }
+}
+/* style.css에 추가 */
+.explanation-box {
+  background: #f8f8f8;
+  border-left: 4px solid #999;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  line-height: 1.5;
+  color: #555;
+}
