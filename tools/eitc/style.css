@@ -1,4 +1,3 @@
-/* style.css */
 html {
   scroll-behavior: smooth;
 }
@@ -27,7 +26,6 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* 목차 */
 .toc {
   background: #f4f7fb;
   padding: 20px 24px;
@@ -89,7 +87,7 @@ label {
   font-weight: bold;
   margin-bottom: 6px;
 }
-select {
+select, input[type="number"] {
   width: 100%;
   padding: 10px;
   font-size: 15px;
@@ -127,26 +125,12 @@ select {
   background: #ffb300;
 }
 
-/* 기타 */
-.notice {
-  margin-top: 40px;
-  background: #fff9c4;
-  border-left: 6px solid #fbc02d;
-  padding: 16px;
-  border-radius: 10px;
-  font-size: 15px;
-  line-height: 1.6;
-}
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-  margin: 60px 0 30px;
-}
+/* 홈 버튼 */
 .home-button {
   position: fixed;
   top: 12px;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   margin: auto;
   width: fit-content;
   padding: 14px 24px;
@@ -166,14 +150,19 @@ footer {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.5);
 }
+.home-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: skewX(-30deg);
+  animation: shineHome 3s infinite;
+}
 
-/* 버튼 애니메이션 */
-@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.5;} }
-@keyframes floatUpDown { 0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);} }
-
-/* style.css (수정된 부분만 발췌) */
-
-/* 버튼 영역 */
+/* 링크 버튼 */
 .section-title {
   text-align: center;
   font-size: 20px;
@@ -188,14 +177,13 @@ footer {
   align-items: center;
   margin-bottom: 60px;
 }
-/* 세 버튼 동일 사이즈 적용 */
 .link-btn {
   display: block;
-  width: 320px;              /* 고정 너비 */
-  padding: 20px 0;           /* 좌우 패딩 제거하고 세로 패딩만 유지 */
+  width: 320px;
+  padding: 20px 0;
   font-size: 18px;
   font-weight: 600;
-  text-align: center;        /* 텍스트 중앙 정렬 */
+  text-align: center;
   border-radius: 14px;
   background: linear-gradient(135deg, #ff8a80, #ffe5e5);
   color: #b71c1c;
@@ -215,11 +203,38 @@ footer {
 .link-btn::before {
   content: "";
   position: absolute;
-  top: 0; left: -80%;
-  width: 60%; height: 100%;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
   background: rgba(255,255,255,0.3);
   transform: skewX(-30deg);
-  animation: shine 3s infinite;
+  animation: shineLink 3s infinite;
 }
 
-@keyframes shine { 0%{left:-80%;}50%{left:130%;}100%{left:-80%;} }
+/* 애니메이션 */
+@keyframes shineHome {
+  0% { left: -75%; }
+  50% { left: 130%; }
+  100% { left: -75%; }
+}
+@keyframes shineLink {
+  0% { left: -80%; }
+  50% { left: 130%; }
+  100% { left: -80%; }
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+@keyframes floatUpDown {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin: 60px 0 30px;
+}
