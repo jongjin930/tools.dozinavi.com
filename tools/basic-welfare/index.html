@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기초생활보장 조건 안내 | DoziNavi</title>
+  <meta name="description" content="기초생활수급자 조건을 확인하고 정부의 생계·의료·주거급여 혜택을 알아보세요." />
+  <meta property="og:title" content="기초생활보장 조건 안내 | DoziNavi" />
+  <meta property="og:description" content="중위소득 50% 이하 등 조건에 따라 기초생활수급자 가능 여부를 확인해보세요." />
+  <meta property="og:image" content="https://tools.dozinavi.com/assets/og-default.jpg" />
+  <meta property="og:url" content="https://tools.dozinavi.com/basic-welfare/" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <div class="container">
+    <h1>🏠 기초생활보장 조건 안내</h1>
+
+    <nav class="toc">
+      <ul>
+        <li><a href="#about">📘 제도 소개</a></li>
+        <li><a href="#conditions">🧾 수급자 요건</a></li>
+        <li><a href="#benefits">💰 지원 내용</a></li>
+        <li><a href="#apply">📞 신청 방법</a></li>
+        <li><a href="#test">🧪 자격 테스트</a></li>
+        <li><a href="#links">🔗 관련 제도</a></li>
+      </ul>
+    </nav>
+
+    <div class="card" id="about">
+      <h2>제도 소개</h2>
+      <p>기초생활보장 제도는 생계가 곤란한 국민에게 생계·의료·주거·교육 등의 급여를 지원하여 인간다운 삶을 보장하는 대표적인 복지제도입니다.</p>
+    </div>
+
+    <div class="card" id="conditions">
+      <h2>수급자 요건</h2>
+      <ul>
+        <li>📌 <strong>소득 인정액</strong>: 급여종류별 기준 중위소득 이하 (생계 30%, 의료 40%, 주거 47%, 교육 50%)</li>
+        <li>📌 <strong>재산 기준</strong>: 대도시 1.88억, 중소도시 1.18억, 농어촌 1.01억 이하</li>
+        <li>📌 <strong>부양의무자 기준</strong>: 대부분 폐지되었으나 일부 조건 제한 존재</li>
+      </ul>
+    </div>
+
+    <div class="card" id="benefits">
+      <h2>지원 내용</h2>
+      <p>생계급여, 의료급여, 주거급여, 교육급여 등 4대 급여가 항목별로 제공됩니다. 중위소득 50% 이하인 경우 일부 급여부터 수급 가능성이 있습니다.</p>
+    </div>
+
+    <div class="card" id="apply">
+  <h2>신청 방법</h2>
+  <p>거주지 관할 읍·면·동 주민센터에 방문하여 신청하거나 온라인으로 신청할 수 있습니다.</p>
+
+  <div class="link-buttons" style="margin-top: 20px;">
+    <a href="/org-contacts/" class="link-btn-light">📞 주민센터 전화번호 찾기</a>
+    <a href="https://www.bokjiro.go.kr" target="_blank" class="link-btn-light">📝 복지로 누리집 바로가기</a>
+  </div>
+</div>
+
+
+
+    <div class="card" id="test">
+      <h2>자격 테스트</h2>
+      <form id="eligibilityForm">
+        <div class="form-section">
+          <label for="q1">1. 가구의 소득이 중위소득 50% 이하인가요?</label>
+          <select id="q1">
+            <option value="">-- 선택 --</option>
+            <option value="yes">예</option>
+            <option value="no">아니오</option>
+          </select>
+        </div>
+        <div class="form-section">
+          <label for="q2">2. 가구의 총 재산이 기준 이하인가요?</label>
+          <select id="q2">
+            <option value="">-- 선택 --</option>
+            <option value="yes">예</option>
+            <option value="no">아니오</option>
+          </select>
+        </div>
+        <div class="form-section">
+          <label for="q3">3. 부양의무자에게 실질적 지원을 받고 있지 않나요?</label>
+          <select id="q3">
+            <option value="">-- 선택 --</option>
+            <option value="yes">예</option>
+            <option value="no">아니오</option>
+          </select>
+        </div>
+      </form>
+      <div id="result" class="result-box"></div>
+      <a href="https://www.bokjiro.go.kr" target="_blank" class="apply-button no-underline">복지로 신청하러 가기</a>
+    </div>
+
+    <div class="card" id="links">
+      <h2 class="section-title">🔗 관련 제도</h2>
+      <div class="link-buttons">
+        <a href="/eitc" class="link-btn">💼 근로장려금 안내</a>
+        <a href="/ctc" class="link-btn">👨‍👩‍👧 자녀장려금 안내</a>
+        <a href="/emergency-welfare" class="link-btn">🚨 긴급 복지지원 안내</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>ⓒ 2025 도지나비 - 실용 웹도구 모음</footer>
+  <script src="script.js"></script>
+</body>
+</html>
