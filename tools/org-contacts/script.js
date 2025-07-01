@@ -4,26 +4,13 @@ const tbody = table.querySelector("tbody");
 const toast = document.getElementById("toast");
 let rows = [];
 
-fetch("centers.csv")
-  .then(res => res.text())
-  .then(csv => {
-    const lines = csv.trim().split("\n");
-    const header = lines[0].split(",");
-    const idxName = header.indexOf("최하위기관명");
-    const idxType = header.indexOf("기관유형별분류");
-    const idxTel  = header.indexOf("대표전화번호");
-    const idxAddr = header.indexOf("도로명주소");
-
-    rows = lines.slice(1).map(line => {
-      const cols = line.split(",");
-      return {
-        name: cols[idxName]?.trim(),
-        type: cols[idxType]?.trim(),
-        tel:  cols[idxTel]?.trim(),
-        addr: cols[idxAddr]?.trim()
-      };
-    });
-  });
+Papa.parse("centers.csv", {
+  download: true,
+  header: true,
+  complete: function(results) {
+    rows = results.data.filter(r => r["최하위기관명"]); // 빈 줄 제거
+  }
+});
 
 input.addEventListener("input", () => {
   const keyword = input.value.trim().toLowerCase();
@@ -35,16 +22,17 @@ input.addEventListener("input", () => {
   }
 
   const filtered = rows.filter(row =>
-    Object.values(row).some(v => v?.toLowerCase().includes(keyword))
+    [row["최하위기관명"], row["기관유형별분류"], row["대표전화번호"], row["도로명주소"]]
+      .some(value => value?.toLowerCase().includes(keyword))
   );
 
   filtered.forEach(row => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${row.name}</td>
-      <td>${row.type}</td>
-      <td class="phone">${row.tel}</td>
-      <td>${row.addr}</td>
+      <td>${row["최하위기관명"]}</td>
+      <td>${row["기관유형별분류"]}</td>
+      <td class="phone">${row["대표전화번호"]}</td>
+      <td>${row["도로명주소"]}</td>
     `;
     tbody.appendChild(tr);
   });
