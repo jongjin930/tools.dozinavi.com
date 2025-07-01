@@ -4,13 +4,12 @@ const tbody = table.querySelector("tbody");
 const toast = document.getElementById("toast");
 let rows = [];
 
-Papa.parse("centers.csv", {
-  download: true,
-  header: true,
-  complete: function(results) {
-    rows = results.data.filter(r => r["최하위기관명"]);
-  }
-});
+// ✅ JSON에서 데이터 불러오기 (centers.json으로 변경)
+fetch("centers.json")
+  .then(res => res.json())
+  .then(data => {
+    rows = data.filter(r => r["최하위기관명"]);
+  });
 
 input.addEventListener("input", () => {
   const keyword = input.value.trim().toLowerCase();
