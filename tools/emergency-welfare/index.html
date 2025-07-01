@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>긴급 복지지원 안내 | DoziNavi</title>
+  <meta name="description" content="실직, 질병 등 위기 상황 시 받을 수 있는 긴급 복지지원 제도 안내 및 자격 테스트" />
+  <meta property="og:title" content="긴급 복지지원 안내 | DoziNavi" />
+  <meta property="og:description" content="위기 상황 시 받을 수 있는 긴급복지 제도의 조건과 신청 방법을 확인하세요." />
+  <meta property="og:image" content="https://tools.dozinavi.com/assets/og-default.jpg" />
+  <meta property="og:url" content="https://tools.dozinavi.com/tools/emergency-welfare" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <div class="container">
+    <h1>🚨 2025 긴급 복지지원 안내</h1>
+
+    <nav class="toc">
+  <ul>
+    <li><a href="#about">🧭 1. 제도 소개</a></li>
+    <li><a href="#conditions">📝 2. 지원 요건</a></li>
+    <li><a href="#amounts">💰 3. 지원 내용</a></li>
+    <li><a href="#period">📅 4. 신청 시기</a></li>
+    <li><a href="#test">🧪 5. 자격 테스트</a></li>
+    <li><a href="#howto">📞 6. 신청 방법</a></li>
+    <li><a href="#links">🔗 7. 정부 혜택 바로가기</a></li>
+  </ul>
+</nav>
+
+
+    <div class="card" id="about">
+      <h2>제도 소개</h2>
+      <p>긴급복지지원은 실직, 중병, 사망, 가정폭력 등 갑작스러운 위기상황으로 생계가 곤란한 가구에게 생계비·의료비·주거비 등을 신속하게 지원하는 제도입니다.</p>
+    </div>
+
+    <div class="card" id="conditions">
+      <h2>지원 요건</h2>
+      <ul>
+        <li>📌 위기 상황: 실직, 질병·부상, 사망, 가정폭력 등</li>
+        <li>📌 소득 기준: 중위소득 75% 이하</li>
+        <li>📌 재산 기준: 대도시 2.41억 / 중소도시 1.52억 / 농어촌 1.31억 이하</li>
+        <li>📌 금융재산: 500만 원 이하 (주거지원은 700만 원 이하)</li>
+      </ul>
+    </div>
+
+    <div class="card" id="amounts">
+      <h2>지원 내용</h2>
+      <p>생계비, 의료비, 주거비, 교육비 등 항목별로 지원되며, 예를 들어 4인 가구 생계비는 약 130만 원까지, 의료비는 최대 300만 원 한도 내에서 지원됩니다.</p>
+    </div>
+
+    <div class="card" id="period">
+      <h2>신청 시기</h2>
+      <ul>
+        <li>⏱ 상시 신청 가능</li>
+        <li>📍 위기 상황 발생 시 지체 없이 관할 지자체에 신청</li>
+      </ul>
+    </div>
+
+    <div class="card" id="test">
+      <h2>자격 테스트</h2>
+      <form id="eligibilityForm">
+        <div class="form-section">
+          <label>1. 위기 상황에 해당하나요?</label>
+          <select id="typeSelect">
+            <option value="">-- 선택 --</option>
+            <option value="yes">예 (실직, 질병, 사망 등)</option>
+            <option value="no">아니오</option>
+          </select>
+        </div>
+        <div class="form-section" id="incomeSection" style="display:none;">
+          <label id="incomeLabel">가구 소득이 중위소득 75% 이하인가요?</label>
+          <select id="incomeSelect">
+            <option value="">-- 선택 --</option>
+            <option value="true">예</option>
+            <option value="false">아니오</option>
+          </select>
+        </div>
+      </form>
+      <div id="result" class="result-box"></div>
+      <button class="apply-button" id="checkBtn">신청 가능 여부 확인</button>
+    </div>
+
+    <div class="card" id="howto" style="text-align: center;">
+      <h2>신청 방법</h2>
+      <p>거주지 관할 시·군·구청 또는 읍·면·동 주민센터를 직접 방문하거나 전화로 문의하세요.</p>
+      <div class="link-buttons" style="margin-top: 24px;">
+  <a href="/org-contacts/" class="link-btn-light">📞 우리 동내 주민센터 전화번호 찾기</a>
+</div>
+
+    </div>
+
+    <div class="card" id="links">
+      <h2 class="section-title">🏛 정부 혜택 바로가기</h2>
+      <div class="link-buttons">
+        <a href="/tools/eitc" class="link-btn">💰 근로장려금 안내</a>
+        <a href="/tools/ctc" class="link-btn">👨‍👩‍👧 자녀장려금 안내</a>
+        <a href="/tools/basic-welfare" class="link-btn">🏠 기초생활보장 안내</a>
+      </div>
+    </div>
+
+  </div>
+  <footer>ⓒ 2025 도지나비 - 실용 웹도구 모음</footer>
+  <script src="script.js"></script>
+</body>
+</html>
