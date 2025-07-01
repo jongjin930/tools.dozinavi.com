@@ -8,7 +8,7 @@ Papa.parse("centers.csv", {
   download: true,
   header: true,
   complete: function(results) {
-    rows = results.data.filter(r => r["최하위기관명"]); // 빈 줄 제거
+    rows = results.data.filter(r => r["최하위기관명"]);
   }
 });
 
@@ -23,7 +23,7 @@ input.addEventListener("input", () => {
 
   const filtered = rows.filter(row =>
     [row["최하위기관명"], row["기관유형별분류"], row["대표전화번호"], row["도로명주소"]]
-      .some(value => value?.toLowerCase().includes(keyword))
+      .some(value => (value || "").toLowerCase().includes(keyword))
   );
 
   filtered.forEach(row => {

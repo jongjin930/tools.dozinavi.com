@@ -65,8 +65,6 @@ h1 {
 #contactsTable td.phone:hover {
   background: #e1f0ff;
 }
-
-/* 토스트 */
 #toast {
   position: fixed;
   bottom: 40px;
@@ -80,16 +78,12 @@ h1 {
   display: none;
   z-index: 9999;
 }
-
-/* 하단 */
 footer {
   text-align: center;
   font-size: 14px;
   color: #888;
   margin: 60px 0 30px;
 }
-
-/* 고정 홈 버튼 */
 .home-button {
   position: fixed;
   top: 12px;
