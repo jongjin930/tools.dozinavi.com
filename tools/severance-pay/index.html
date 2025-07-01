@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="정확하고 신뢰할 수 있는 퇴직금 계산기 - 세전·세후 퇴직금을 확인하세요." />
+  <meta property="og:title" content="퇴직금 계산기 - 도지나비" />
+  <meta property="og:description" content="입사일, 퇴사일, 급여, 상여금 기준으로 퇴직금 계산. 세전·세후 금액과 계산 기준까지 제공." />
+  <meta property="og:image" content="https://tools.dozinavi.com/og/severance.jpg" />
+  <meta property="og:url" content="https://tools.dozinavi.com/severance-pay" />
+  <title>퇴직금 계산기 - 도지나비</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <main>
+    <h1>퇴직금 계산기</h1>
+
+    <div class="card">
+      <label for="startDate">입사일</label>
+      <input type="date" id="startDate" />
+      <label for="endDate">퇴사일</label>
+      <input type="date" id="endDate" />
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>최근 3개월 급여</h2>
+        <label class="check-inline">
+          <input type="checkbox" id="sameSalary" />
+          최근 3개월 급여가 동일합니다
+        </label>
+      </div>
+      <div class="input-row">
+        <div>
+          <label for="salary1">1개월 전</label>
+          <input type="text" id="salary1" />
+        </div>
+        <div>
+          <label for="salary2">2개월 전</label>
+          <input type="text" id="salary2" />
+        </div>
+        <div>
+          <label for="salary3">3개월 전</label>
+          <input type="text" id="salary3" />
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>최근 3개월 상여금</h2>
+        <label class="check-inline">
+          <input type="checkbox" id="sameBonus" />
+          상여금도 3개월간 동일합니다
+        </label>
+      </div>
+      <div class="input-row">
+        <div>
+          <label for="bonus1">1개월 전</label>
+          <input type="text" id="bonus1" value="0" />
+        </div>
+        <div>
+          <label for="bonus2">2개월 전</label>
+          <input type="text" id="bonus2" value="0" />
+        </div>
+        <div>
+          <label for="bonus3">3개월 전</label>
+          <input type="text" id="bonus3" value="0" />
+        </div>
+      </div>
+
+      <div class="highlight-check">
+        <input type="checkbox" id="includeBonus" />
+        <label for="includeBonus"><strong>해당 상여금은 정기적·고정적으로 지급되었습니다</strong></label>
+      </div>
+    </div>
+
+    <button onclick="calculateSeverance()">퇴직금 계산하기</button>
+
+    <section id="result" class="hidden"></section>
+
+    <div class="info-box">
+      <h3>퇴직금 계산 기준</h3>
+      <ul>
+        <li><strong>평균임금:</strong> 퇴직 전 3개월간 지급된 임금(정기상여금 포함 시)을 90일로 나눈 금액을 사용합니다.</li>
+        <li><strong>정기상여금 포함 기준:</strong> 정기적이고 고정적으로 지급된 상여금만 평균임금에 포함됩니다 (근로기준법 제2조 제1항 제5호).</li>
+        <li><strong>계산식:</strong> 일 평균임금 × 30일 × 총 근속연수</li>
+        <li><strong>세전/세후:</strong> 본 계산기는 단순히 3.3%를 공제한 세후 금액을 참고용으로 제공하며, 실제 퇴직소득세는 국세청 기준에 따라 달라질 수 있습니다.</li>
+        <li><strong>관련 법령:</strong> 근로자퇴직급여 보장법 제8조, 근로기준법 제2조, 소득세법 시행령 제143조</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>ⓒ 2025 도지나비 - 실용 웹도구 모음</footer>
+  <script src="script.js"></script>
+  <div id="toast" class="toast"></div>
+</body>
+</html>
