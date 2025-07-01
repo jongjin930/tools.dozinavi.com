@@ -1,0 +1,132 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2025 근로장려금 안내</title>
+  <meta name="description" content="2025년 근로장려금 제도 요건과 신청 방법을 확인하고 자격 조건을 테스트해보세요.">
+  <meta property="og:title" content="2025 근로장려금 안내 및 자격 테스트" />
+  <meta property="og:description" content="가구 유형, 소득, 재산 조건에 따라 근로장려금 신청 가능 여부를 확인하세요." />
+  <meta property="og:image" content="https://tools.dozinavi.com/assets/eitc-og.jpg" />
+  <meta property="og:url" content="https://tools.dozinavi.com/tools/eitc" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <div class="container">
+    <h1>💰 2025년 근로장려금 안내</h1>
+
+    <nav class="toc">
+      <ul>
+        <li><a href="#about">💡 근로장려금이란?</a></li>
+        <li><a href="#conditions">🧾 지원 요건</a></li>
+        <li><a href="#amounts">💰 최대 지급액</a></li>
+        <li><a href="#timing">📅 신청 시기</a></li>
+        <li><a href="#test">🧪 자격 테스트</a></li>
+        <li><a href="#howto">🛠 신청 방법</a></li>
+        <li><a href="#notice">⚠️ 유의사항</a></li>
+      </ul>
+    </nav>
+
+    <div class="card" id="about">
+      <h2>근로장려금이란?</h2>
+      <p>저소득 가구의 근로를 장려하고 생활 안정을 돕기 위해 국가에서 <strong>현금으로 지원</strong>하는 제도입니다.</p>
+    </div>
+
+    <div class="card" id="conditions">
+      <h2>지원 요건</h2>
+      <ul>
+        <li>📌 가구 유형: 단독 / 홑벌이 / 맞벌이</li>
+        <li>📌 소득 요건:
+          <ul>
+            <li>단독: 2,200만원 이하</li>
+            <li>홑벌이: 3,200만원 이하</li>
+            <li>맞벌이: 3,800만원 이하</li>
+          </ul>
+        </li>
+        <li>📌 재산 요건: 2억 4천만원 이하 (부채 제외)</li>
+      </ul>
+    </div>
+
+    <div class="card" id="amounts">
+      <h2>최대 지급액</h2>
+      <ul>
+        <li>💵 단독: 최대 150만원</li>
+        <li>💵 홑벌이: 최대 260만원</li>
+        <li>💵 맞벌이: 최대 300만원</li>
+      </ul>
+    </div>
+
+    <div class="card" id="timing">
+      <h2>신청 시기</h2>
+      <ul>
+        <li>📆 정기신청: 매년 5월 (지급: 9월)</li>
+        <li>📆 반기신청: 9월 / 3월 (지급: 12월 / 6월)</li>
+        <li>※ 근로소득자만 반기신청 가능</li>
+      </ul>
+    </div>
+
+    <div class="card" id="test">
+      <h2>📝 간단 자격 테스트</h2>
+      <form id="eligibilityForm">
+        <div class="form-section">
+          <label>1. 가구 유형을 선택하세요:</label>
+          <select id="typeSelect">
+            <option value="">-- 선택 --</option>
+            <option value="단독">단독</option>
+            <option value="홑벌이">홑벌이</option>
+            <option value="맞벌이">맞벌이</option>
+          </select>
+        </div>
+        <div class="form-section">
+          <label id="incomeLabel" style="display:none;"></label>
+        </div>
+        <div class="form-section">
+          <label>3. 보유 재산이 2억 4천만 원 이하인가요?</label>
+          <select id="propertySelect">
+            <option value="">-- 선택 --</option>
+            <option value="true">예</option>
+            <option value="false">아니오</option>
+          </select>
+        </div>
+      </form>
+      <div id="result" class="result-box"></div>
+      <button class="apply-button" onclick="window.open('https://www.hometax.go.kr')">
+        근로장려금 신청하러 가기
+      </button>
+    </div>
+
+    <div class="card" id="howto">
+      <h2>신청 방법</h2>
+      <ul>
+        <li>① 홈택스 또는 손택스 앱 로그인</li>
+        <li>② [신청/제출] → [근로장려금 신청]</li>
+        <li>③ 본인 정보 및 계좌 입력</li>
+        <li>④ 신청 완료 후, 심사 및 지급 안내 수령</li>
+      </ul>
+    </div>
+
+    <div class="card" id="notice">
+      <h2>유의사항</h2>
+      <ul>
+        <li>❗ 허위 신청 시 환수 및 제재</li>
+        <li>❗ 지급 여부는 국세청 심사 결과에 따름</li>
+        <li>❗ 지급은 계좌로 현금 입금됨 (세금 환급 아님)</li>
+      </ul>
+    </div>
+
+    <div class="section-title">🏛 정부 혜택 바로가기</div>
+    <div class="link-buttons">
+      <a href="/tools/ctc" class="link-btn">👨‍👩‍👧 자녀장려금 안내</a>
+      <a href="/tools/emergency-welfare" class="link-btn">🚨 긴급 복지지원 안내</a>
+      <a href="/tools/basic-welfare" class="link-btn">🏠 기초생활보장 조건 안내</a>
+    </div>
+
+  </div>
+
+  <footer>ⓒ 2025 도지나비 - 실용 웹도구 모음</footer>
+  <script src="script.js"></script>
+</body>
+</html>
