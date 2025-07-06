@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,17 +19,16 @@
     <h1>🚨 2025 긴급 복지지원 안내</h1>
 
     <nav class="toc">
-  <ul>
-    <li><a href="#about">🧭 1. 제도 소개</a></li>
-    <li><a href="#conditions">📝 2. 지원 요건</a></li>
-    <li><a href="#amounts">💰 3. 지원 내용</a></li>
-    <li><a href="#period">📅 4. 신청 시기</a></li>
-    <li><a href="#test">🧪 5. 자격 테스트</a></li>
-    <li><a href="#howto">📞 6. 신청 방법</a></li>
-    <li><a href="#links">🔗 7. 정부 혜택 바로가기</a></li>
-  </ul>
-</nav>
-
+      <ul>
+        <li><a href="#about">🧭 1. 제도 소개</a></li>
+        <li><a href="#conditions">📝 2. 지원 요건</a></li>
+        <li><a href="#amounts">💰 3. 지원 내용</a></li>
+        <li><a href="#period">📅 4. 신청 시기</a></li>
+        <li><a href="#test">🧪 5. 자격 테스트</a></li>
+        <li><a href="#howto">📞 6. 신청 방법</a></li>
+        <li><a href="#links">🔗 7. 정부 혜택 바로가기</a></li>
+      </ul>
+    </nav>
 
     <div class="card" id="about">
       <h2>제도 소개</h2>
@@ -69,7 +69,7 @@
             <option value="no">아니오</option>
           </select>
         </div>
-        <div class="form-section" id="incomeSection" style="display:none;">
+        <div class="form-section" id="incomeSection" style="display: none;">
           <label id="incomeLabel">가구 소득이 중위소득 75% 이하인가요?</label>
           <select id="incomeSelect">
             <option value="">-- 선택 --</option>
@@ -79,16 +79,19 @@
         </div>
       </form>
       <div id="result" class="result-box"></div>
-      <button class="apply-button" id="checkBtn">신청 가능 여부 확인</button>
+      <a href="#howto" class="apply-button" id="applyBtn">
+  <span>긴급복지지원<br>신청하러 가기</span>
+</a>
+
+
     </div>
 
     <div class="card" id="howto" style="text-align: center;">
       <h2>신청 방법</h2>
       <p>거주지 관할 시·군·구청 또는 읍·면·동 주민센터를 직접 방문하거나 전화로 문의하세요.</p>
       <div class="link-buttons" style="margin-top: 24px;">
-  <a href="/org-contacts/" class="link-btn-light">📞 우리 동내 주민센터 전화번호 찾기</a>
-</div>
-
+        <a href="/org-contacts/" class="link-btn-light">📞 우리 동내 주민센터 전화번호 찾기</a>
+      </div>
     </div>
 
     <div class="card" id="links">

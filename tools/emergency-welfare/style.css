@@ -1,6 +1,4 @@
-/* /tools/ctc/style.css */
-/* (템플릿 style.css에서 변경된 부분만 발췌 및 적용) */
-
+/* style.css */
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Noto Sans KR', sans-serif;
@@ -54,13 +52,36 @@ select, input[type="number"] {
 
 /* 신청 버튼 */
 .apply-button {
-  background: #ff9800; color: white; font-size: 20px;
-  padding: 18px 32px; border: none; border-radius: 12px;
+  background: #ff9800;
+  color: white;
+  font-size: 20px; /* ✅ 글자 더 큼 */
+  font-weight: bold;
+  padding: 14px 0;
+  width: 220px; /* ✅ 가로폭 더 줄임 */
+  border: none;
+  border-radius: 10px;
   animation: floatUpDown 2s infinite ease-in-out, blink 1.5s infinite;
-  display: block; margin: 24px auto 0; box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  cursor: pointer; transition: transform 0.3s ease;
+  display: block;
+  margin: 24px auto 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.4;
 }
-.apply-button:hover { transform: translateY(-6px); background: #ffb300; }
+.apply-button span {
+  display: inline-block;
+  white-space: normal; /* ✅ 줄바꿈 깔끔하게 */
+}
+.apply-button:hover {
+  transform: translateY(-4px);
+  background: #ffb300;
+}
+
+
+
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.5;} }
+@keyframes floatUpDown { 0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);} }
 
 /* 홈 버튼 */
 .home-button {
@@ -92,38 +113,13 @@ select, input[type="number"] {
   background: rgba(255,255,255,0.3); transform: skewX(-30deg); animation: shine 3s infinite;
 }
 @keyframes shine { 0%{left:-80%;}50%{left:130%;}100%{left:-80%;} }
-@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.5;} }
-@keyframes floatUpDown { 0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);} }
 
-footer { text-align: center; font-size: 14px; color: #888; margin: 60px 0 30px; }
-.home-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.4);
-  transform: skewX(-30deg);
-  animation: shine 3s infinite;
-}
-@keyframes shine {
-  0% { left: -75%; }
-  50% { left: 130%; }
-  100% { left: -75%; }
-}
+/* 링크 버튼 라이트 */
 .link-btn-light {
-  display: block;
-  width: 320px;
-  padding: 18px 0;
-  font-size: 17px;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #e0f2ff, #cfe8ff);
-  color: #004d99;
-  text-decoration: none;
-  border: 2px solid #90caf9;
+  display: block; width: 320px; padding: 18px 0; font-size: 17px; font-weight: 600;
+  text-align: center; border-radius: 14px;
+  background: linear-gradient(135deg, #e0f2ff, #cfe8ff); color: #004d99;
+  text-decoration: none; border: 2px solid #90caf9;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
@@ -132,3 +128,5 @@ footer { text-align: center; font-size: 14px; color: #888; margin: 60px 0 30px; 
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   transform: translateY(-3px);
 }
+
+footer { text-align: center; font-size: 14px; color: #888; margin: 60px 0 30px; }
