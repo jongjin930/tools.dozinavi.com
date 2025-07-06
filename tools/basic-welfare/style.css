@@ -149,12 +149,12 @@ footer { text-align: center; font-size: 14px; color: #888; margin: 60px 0 30px; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
-
 .link-btn-light:hover {
   background: linear-gradient(135deg, #bbdefb, #e3f2fd);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   transform: translateY(-3px);
 }
+
 select {
   width: 100%;
   padding: 10px;
