@@ -2,61 +2,60 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <title>실용 웹도구 모음</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>도지나비 - 실생활 계산기와 웹도구</title>
-  <meta name="description" content="월급 계산기, 퇴직금 계산기, 글자 수 세기 등 실용 웹도구를 한 곳에!">
-
-  <!-- Open Graph (OG) 태그 -->
-  <meta property="og:title" content="도지나비 - 실생활 계산기와 블로거 도구 모음" />
-  <meta property="og:description" content="월급 계산기, 퇴직금 계산기, 글자 수 세기 등 실용 웹도구를 한 곳에!" />
-  <meta property="og:image" content="https://dozinavi.com/og-image.png" />
+  <meta name="description" content="글자 수 세기, 계산기, 복지 안내 등 실용적인 무료 웹도구 모음.">
+  <meta property="og:title" content="실용 웹도구 모음" />
+  <meta property="og:description" content="글자 수 세기, 계산기, 복지 안내 등 실용적인 무료 웹도구 모음." />
+  <meta property="og:image" content="https://tools.dozinavi.com/og-image.png" />
   <meta property="og:url" content="https://tools.dozinavi.com/" />
   <meta property="og:type" content="website" />
 
   <style>
+    /* ─ 기본 페이지 스타일 ─ */
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
+      background: #f5f7fa;
       color: #2c3e50;
       line-height: 1.6;
     }
     header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 1.2rem 1rem;
+      background: #2c3e50;
+      color: #fff;
+      padding: 1.2rem;
       text-align: center;
     }
     header h1 {
-      margin: 0.3rem 0;
+      margin: 0;
       font-size: 1.8rem;
     }
     main {
       max-width: 800px;
       margin: 0 auto;
-      padding: 0 1.2rem;
+      padding: 1rem;
     }
-    .category {
-      padding: 1rem 0;
+    .control-buttons {
+      display: flex;
+      justify-content: center;  /* 버튼을 가로 중앙에 정렬 */
+      flex-wrap: wrap;          /* 화면이 좁아지면 자동으로 줄바꿈 */
+      gap: 16px;
+      margin: 1rem 0;
     }
-    .category-title {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-top: 2rem;
-      border-left: 4px solid #3498db;
-      padding-left: 0.5rem;
-      color: #34495e;
-    }
+
     .tool-list {
       list-style: none;
+      margin: 0;
       padding: 0;
-      margin-top: 1rem;
     }
     .tool-item {
       display: flex;
       align-items: center;
       border-bottom: 1px solid #ddd;
       padding: 0.8rem 0;
+    }
+    .tool-item:last-child {
+      border-bottom: none;
     }
     .tool-item a {
       display: flex;
@@ -76,10 +75,6 @@
       margin-right: 1rem;
       flex-shrink: 0;
     }
-    .category-calc { background-color: #7bbbe0; color: #1b4f72; }
-    .category-write { background-color: #f4b183; color: #7e5109; }
-    .category-tools { background-color: #a9dfbf; color: #1d5a38; }
-    .category-aid { background-color: #d2b4f2; color: #5e3b84; }
     .tool-text strong {
       font-size: 1rem;
     }
@@ -87,260 +82,213 @@
       font-size: 0.9rem;
       color: #555;
     }
+    .category-calc  { background: #7bbbe0;  color: #1b4f72; }
+    .category-write { background: #f4b183;  color: #7e5109; }
+    .category-tools { background: #a9dfbf;  color: #1d5a38; }
+    .category-aid   { background: #d2b4f2;  color: #5e3b84; }
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
       font-size: 0.9rem;
       color: #999;
       border-top: 1px solid #eee;
     }
+
+    /* ─ 아코디언 스타일 ─ */
+    .accordion {
+      border-bottom: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+    .accordion:first-child {
+      margin-top: 0;
+    }
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem;
+      background: #fafafa;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 1.2rem;
+    }
+    .accordion-header:hover {
+      background: #f2f2f2;
+    }
+    .accordion-header::after {
+      content: '▸';
+      transition: transform 0.2s;
+    }
+    .accordion.open .accordion-header::after {
+      transform: rotate(90deg);
+    }
+    .accordion-content {
+      display: none;
+      padding: 0 0.8rem 1rem;
+    }
+    .accordion.open .accordion-content {
+      display: block;
+    }
+
+    /* ─ 카테고리별 헤더 스트라이프 & 텍스트 컬러 ─ */
+    .accordion.write .accordion-header {
+      border-left: 4px solid #f4b183;
+      color: #7e5109;
+    }
+    .accordion.calc .accordion-header {
+      border-left: 4px solid #7bbbe0;
+      color: #1b4f72;
+    }
+    .accordion.tools .accordion-header {
+      border-left: 4px solid #a9dfbf;
+      color: #1d5a38;
+    }
+    .accordion.aid .accordion-header {
+      border-left: 4px solid #d2b4f2;
+      color: #5e3b84;
+    }
+
+    /* ─ 3D 버튼 스타일 ─ */
+    .btn-expand, .btn-collapse {
+      padding: 12px 24px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #111;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow:
+        inset 0 1px 0 #ffffffaa,
+        0 3px 6px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    .btn-expand {
+      background: linear-gradient(to bottom, #eaf3fd, #6aa7e9);
+    }
+    .btn-expand:hover {
+      background: linear-gradient(to bottom, #d6eafd, #3b82f6);
+    }
+    .btn-expand:active {
+      background: linear-gradient(to bottom, #bcdcfb, #3475d6);
+      transform: translateY(1px);
+      box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.2),
+        0 1px 1px rgba(0,0,0,0.1);
+    }
+    .btn-collapse {
+      background: linear-gradient(to bottom, #ede7f6, #9e84d4);
+    }
+    .btn-collapse:hover {
+      background: linear-gradient(to bottom, #e5def2, #8e70c7);
+    }
+    .btn-collapse:active {
+      background: linear-gradient(to bottom, #cab3e4, #7e57c2);
+      transform: translateY(1px);
+      box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.2),
+        0 1px 1px rgba(0,0,0,0.1);
+    }
+
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.4rem;
-      }
+      header h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>깔끔한 웹도구 모음</h1>
+  <h1>실용 웹도구 모음</h1>
 </header>
 
 <main>
-  <section class="category">
-    <div class="category-title">💰 실생활 계산기 모음</div>
-    <ul class="tool-list">
-      <li class="tool-item">
-        <a href="/salary">
-          <div class="tool-icon category-calc">💸</div>
-          <div class="tool-text">
-            <strong>월급 실수령액 계산기</strong><br>
-            <span>세금 공제 후 실수령액 계산</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/severance-pay">
-          <div class="tool-icon category-calc">🏖️</div>
-          <div class="tool-text">
-            <strong>퇴직금 계산기</strong><br>
-            <span>근무기간 기준 퇴직금 자동 계산</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/insurance">
-          <div class="tool-icon category-calc">🏥</div>
-          <div class="tool-text">
-            <strong>4대 보험 계산기</strong><br>
-            <span>국민연금, 건강보험 등 자동 계산</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/wage-converter">
-          <div class="tool-icon category-calc">🔁</div>
-          <div class="tool-text">
-            <strong>시급/월급 변환기</strong><br>
-            <span>시급 ↔ 월급 간 빠른 변환</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/real-estate-fee">
-          <div class="tool-icon category-calc">🏘️</div>
-          <div class="tool-text">
-            <strong>부동산 수수료 계산기</strong><br>
-            <span>매매/임대 계약 시 중개보수 계산</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/week-pay">
-          <div class="tool-icon category-calc">📅</div>
-          <div class="tool-text">
-            <strong>주휴수당 계산기</strong><br>
-            <span>주휴수당 지급 조건 자동 계산</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/vat-calculator">
-          <div class="tool-icon category-calc">🧾</div>
-          <div class="tool-text">
-            <strong>부가세 계산기</strong><br>
-            <span>상품 금액에서 부가세 포함/제외 계산</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
 
-  <section class="category">
-    <div class="category-title">✍️ 글쓰기/블로거 도구 모음</div>
-    <ul class="tool-list">
-      <li class="tool-item">
-        <a href="/charcount">
-          <div class="tool-icon category-write">🔤</div>
-          <div class="tool-text">
-            <strong>글자 수 세기</strong><br>
-            <span>입력한 글자의 수를 실시간으로 확인</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/word-frequency">
-          <div class="tool-icon category-write">📊</div>
-          <div class="tool-text">
-            <strong>단어 빈도수 분석기</strong><br>
-            <span>문장에서 자주 사용된 단어 확인</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/sentence-length">
-          <div class="tool-icon category-write">📏</div>
-          <div class="tool-text">
-            <strong>문장 길이 분석기</strong><br>
-            <span>글의 가독성을 높이기 위한 도구</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/case-converter">
-          <div class="tool-icon category-write">🔠</div>
-          <div class="tool-text">
-            <strong>대소문자 변환기</strong><br>
-            <span>대문자 ↔ 소문자 간 빠른 변환</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/emoji">
-          <div class="tool-icon category-write">😀</div>
-          <div class="tool-text">
-            <strong>이모지 복사기</strong><br>
-            <span>다양한 이모지를 쉽게 복사</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/text-cleaner">
-          <div class="tool-icon category-write">↩️</div>
-          <div class="tool-text">
-            <strong>줄바꿈/공백 정리기</strong><br>
-            <span>복사한 텍스트를 깔끔하게 정리</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <!-- 상단 컨트롤 버튼 -->
+  <div class="control-buttons">
+    <button class="btn-expand" onclick="expandAll()">모두 펼치기</button>
+    <button class="btn-collapse" onclick="collapseAll()">모두 닫기</button>
+  </div>
 
-  <section class="category">
-    <div class="category-title">📁 나만의 도구함</div>
-    <ul class="tool-list">
-      <li class="tool-item">
-        <a href="/memo">
-          <div class="tool-icon category-tools">📝</div>
-          <div class="tool-text">
-            <strong>임시 메모장</strong><br>
-            <span>간단한 메모를 브라우저에 저장</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/snippets">
-          <div class="tool-icon category-tools">📌</div>
-          <div class="tool-text">
-            <strong>나만의 문구 저장소</strong><br>
-            <span>자주 쓰는 문장을 저장하고 복사</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <!-- 블로그·콘텐츠 도구 -->
+  <div class="accordion write">
+    <div class="accordion-header">✍ 블로그·콘텐츠 도구</div>
+    <div class="accordion-content">
+      <ul class="tool-list">
+        <li class="tool-item"><a href="/charcount"><div class="tool-icon category-write">🔤</div><div class="tool-text"><strong>글자 수 세기</strong><br><span>입력한 글자의 수를 실시간 확인</span></div></a></li>
+        <li class="tool-item"><a href="/sentence-length"><div class="tool-icon category-write">📏</div><div class="tool-text"><strong>문장 길이 분석기</strong><br><span>글의 가독성 개선</span></div></a></li>
+        <li class="tool-item"><a href="/word-frequency"><div class="tool-icon category-write">📊</div><div class="tool-text"><strong>단어 빈도수 분석기</strong><br><span>자주 사용된 단어 확인</span></div></a></li>
+        <li class="tool-item"><a href="/case-converter"><div class="tool-icon category-write">🔠</div><div class="tool-text"><strong>대소문자 변환기</strong><br><span>대문자 ↔ 소문자 빠른 변환</span></div></a></li>
+        <li class="tool-item"><a href="/cleaner"><div class="tool-icon category-write">↩️</div><div class="tool-text"><strong>줄바꿈/공백 정리기</strong><br><span>텍스트 깔끔 정리</span></div></a></li>
+        <li class="tool-item"><a href="/convert"><div class="tool-icon category-write">🖼️</div><div class="tool-text"><strong>이미지 변환기</strong><br><span>JPG·PNG·WebP 포맷 변환</span></div></a></li>
+      </ul>
+    </div>
+  </div>
 
-  <section class="category">
-    <div class="category-title">🏛 정부 혜택 안내</div>
-    <ul class="tool-list">
-      <li class="tool-item">
-        <a href="/eitc">
-          <div class="tool-icon category-aid">💼</div>
-          <div class="tool-text">
-            <strong>근로장려금 신청 방법</strong><br>
-            <span>신청 대상, 요건, 방법 등을 한눈에 안내</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/ctc">
-          <div class="tool-icon category-aid">👶</div>
-          <div class="tool-text">
-            <strong>자녀장려금 신청 방법</strong><br>
-            <span>소득 및 부양 자녀 기준, 신청 절차 설명</span>
-          </div>
-        </a>
-      </li>
-      <li class="tool-item">
-        <a href="/emergency-welfare">
-          <div class="tool-icon category-aid">🚨</div>
-          <div class="tool-text">
-            <strong>긴급 복지지원 안내</strong><br>
-            <span>위기상황 시 정부 긴급지원 제도</span>
-          </div>
-        </a>
-      </li>
-      
-      <li class="tool-item">
-        <a href="/basic-welfare">
-          <div class="tool-icon category-aid">🧍</div>
-          <div class="tool-text">
-            <strong>기초생활보장 조건 안내</strong><br>
-            <span>수급자 인정 요건 및 지원 내역</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <!-- 나만의 저장소 -->
+  <div class="accordion tools">
+    <div class="accordion-header">📁 나만의 저장소</div>
+    <div class="accordion-content">
+      <ul class="tool-list">
+        <li class="tool-item"><a href="/memo"><div class="tool-icon category-tools">📝</div><div class="tool-text"><strong>임시 메모장</strong><br><span>메모를 브라우저에 저장</span></div></a></li>
+        <li class="tool-item"><a href="/snippets"><div class="tool-icon category-tools">📌</div><div class="tool-text"><strong>나만의 문구 저장소</strong><br><span>자주 쓰는 문장 저장·복사</span></div></a></li>
+      </ul>
+    </div>
+  </div>
 
-  <section class="category">
-    <div class="category-title">🖼 이미지 도구</div>
-    <ul class="tool-list">
-      <li class="tool-item">
-        <a href="/convert">
-          <div class="tool-icon category-tools">🖼️</div>
-          <div class="tool-text">
-            <strong>이미지 변환기</strong><br>
-            <span>JPG, PNG, WebP 포맷 변환</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <!-- 생활 계산기 도구 -->
+  <div class="accordion calc">
+    <div class="accordion-header">💸 생활 계산기 도구</div>
+    <div class="accordion-content">
+      <ul class="tool-list">
+        <li class="tool-item"><a href="/salary"><div class="tool-icon category-calc">💸</div><div class="tool-text"><strong>시급/월급 변환기</strong><br><span>시급 ↔ 월급 빠른 변환</span></div></a></li>
+        <li class="tool-item"><a href="/severance-pay"><div class="tool-icon category-calc">🏖️</div><div class="tool-text"><strong>퇴직금 계산기</strong><br><span>근무기간 기준 퇴직금 자동 계산</span></div></a></li>
+        <li class="tool-item"><a href="/insurance"><div class="tool-icon category-calc">🏥</div><div class="tool-text"><strong>4대 보험 계산기</strong><br><span>국민연금·건강보험 계산</span></div></a></li>
+        <li class="tool-item"><a href="/week-pay"><div class="tool-icon category-calc">📅</div><div class="tool-text"><strong>주휴수당 계산기</strong><br><span>주휴수당 지급 조건 계산</span></div></a></li>
+        <li class="tool-item"><a href="/real-estate-fee"><div class="tool-icon category-calc">🏘️</div><div class="tool-text"><strong>부동산 수수료 계산기</strong><br><span>중개보수 자동 계산</span></div></a></li>
+        <li class="tool-item"><a href="/vat-calculator"><div class="tool-icon category-calc">🧾</div><div class="tool-text"><strong>부가세 계산기</strong><br><span>부가세 포함/제외 계산</span></div></a></li>
+      </ul>
+    </div>
+  </div>
 
-  <section class="category">
-  <div class="category-title">📇 전국 조회 도구</div>
-  <ul class="tool-list">
-    <li class="tool-item">
-      <a href="/org-contacts/">
-        <div class="tool-icon category-tools">📇</div>
-        <div class="tool-text">
-          <strong>전국 관공서 전화번호 조회</strong><br>
-          <span>읍면동 주민센터, 시청, 교육청 등 검색</span>
-        </div>
-      </a>
-    </li>
-  </ul>
-</section>
+  <!-- 정부지원·생활정보 안내 -->
+  <div class="accordion aid">
+    <div class="accordion-header">🏛 정부지원·생활정보 안내</div>
+    <div class="accordion-content">
+      <ul class="tool-list">
+        <li class="tool-item"><a href="/eitc"><div class="tool-icon category-aid">💼</div><div class="tool-text"><strong>근로장려금 안내</strong><br><span>신청 대상·절차 안내</span></div></a></li>
+        <li class="tool-item"><a href="/ctc"><div class="tool-icon category-aid">👶</div><div class="tool-text"><strong>자녀장려금 안내</strong><br><span>소득·부양 자녀 기준</span></div></a></li>
+        <li class="tool-item"><a href="/emergency-welfare"><div class="tool-icon category-aid">🚨</div><div class="tool-text"><strong>긴급 복지지원 안내</strong><br><span>위기상황 시 지원 제도</span></div></a></li>
+        <li class="tool-item"><a href="/basic-welfare"><div class="tool-icon category-aid">🧍</div><div class="tool-text"><strong>기초생활보장 안내</strong><br><span>수급자 요건 및 지원내역</span></div></a></li>
+        <li class="tool-item"><a href="/org-contacts/"><div class="tool-icon category-aid">📇</div><div class="tool-text"><strong>전국 관공서 전화번호 조회</strong><br><span>주민센터·교육청 검색</span></div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 하단 컨트롤 버튼 -->
+  <div class="control-buttons">
+    <button class="btn-expand" onclick="expandAll()">모두 펼치기</button>
+    <button class="btn-collapse" onclick="collapseAll()">모두 닫기</button>
+  </div>
 
 </main>
 
 <footer>
-  <p>도지나비는 실용적인 웹도구를 제공합니다.<br>
-  💻 Made with love by Dozinavi</p>
+  <p>도지나비는 실용적인 웹도구를 제공합니다.<br>💻 Made with love by Dozinavi</p>
   <p>ⓒ 2025 tools.dozinavi.com</p>
 </footer>
+
+<script>
+  function expandAll() {
+    document.querySelectorAll('.accordion').forEach(acc => acc.classList.add('open'));
+  }
+  function collapseAll() {
+    document.querySelectorAll('.accordion').forEach(acc => acc.classList.remove('open'));
+  }
+  document.querySelectorAll('.accordion').forEach(acc => {
+    acc.querySelector('.accordion-header')
+       .addEventListener('click', () => acc.classList.toggle('open'));
+  });
+</script>
 
 </body>
 </html>
