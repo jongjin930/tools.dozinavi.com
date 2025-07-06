@@ -219,7 +219,10 @@ select {
 }
 .link-btn-light {
   display: block;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 18px 0;
   font-size: 17px;
   font-weight: 600;
@@ -232,6 +235,7 @@ select {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
+
 .link-btn-light:hover {
   background: linear-gradient(135deg, #bbdefb, #e3f2fd);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
