@@ -3,8 +3,19 @@ const typeSelect = document.getElementById("typeSelect");
 const incomeSection = document.getElementById("incomeSection");
 const incomeSelect = document.getElementById("incomeSelect");
 const resultDiv = document.getElementById("result");
+const applyBtn = document.getElementById("applyBtn");
 
-// 위기 상황 선택 시
+// 디바이스 감지
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+if (!isMobile) {
+  applyBtn.setAttribute("href", "#");
+  applyBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    alert("📞 129로 직접 전화하셔야 합니다.\n(이 버튼은 모바일에서만 작동합니다)");
+  });
+}
+
+// 질문 선택 시 자동 평가
 typeSelect.addEventListener("change", () => {
   if (typeSelect.value === "yes") {
     incomeSection.style.display = "block";
@@ -12,20 +23,14 @@ typeSelect.addEventListener("change", () => {
     incomeSection.style.display = "none";
     incomeSelect.value = "";
   }
-  resultDiv.textContent = "";
   evaluate();
 });
 
-// 소득 여부 선택 시
-incomeSelect.addEventListener("change", () => {
-  evaluate();
-});
+incomeSelect.addEventListener("change", evaluate);
 
-// 자격 평가 함수 (버튼 없이 자동)
 function evaluate() {
   const type = typeSelect.value;
   const income = incomeSelect.value;
-
   if (!type) {
     resultDiv.textContent = "⚠️ 위기 사유를 선택해주세요.";
     return;

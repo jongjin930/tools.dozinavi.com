@@ -79,19 +79,33 @@
         </div>
       </form>
       <div id="result" class="result-box"></div>
-      <a href="#howto" class="apply-button" id="applyBtn">
-  <span>긴급복지지원<br>신청하러 가기</span>
-</a>
-
-
     </div>
 
-    <div class="card" id="howto" style="text-align: center;">
+    <div class="card" id="howto">
       <h2>신청 방법</h2>
-      <p>거주지 관할 시·군·구청 또는 읍·면·동 주민센터를 직접 방문하거나 전화로 문의하세요.</p>
-      <div class="link-buttons" style="margin-top: 24px;">
-        <a href="/org-contacts/" class="link-btn-light">📞 우리 동내 주민센터 전화번호 찾기</a>
+      <div class="howto-info">
+        <ul class="howto-list">
+          <li>🏢 <strong>방문:</strong> 거주지 관할 시·군·구청 또는 읍·면·동 주민센터</li>
+          <li>☎️ <strong>전화:</strong> 129 상담센터로 전화하여 관할 주민센터 연계 요청 가능</li>
+        </ul>
       </div>
+      <div class="link-buttons" style="margin-top: 24px;">
+        <a href="/org-contacts/" class="link-btn-light">📞 우리 동네 주민센터 전화번호 찾기</a>
+      </div>
+    </div>
+
+    <div class="card" style="background: #fff8e1; border-left: 6px solid #ffa000;">
+      <h3 style="margin-top: 0;">📞 보건복지상담센터 129</h3>
+      <p style="line-height: 1.6;">
+        <strong>이 번호는 신청 접수 창구가 아닙니다.</strong><br />
+        긴급한 위기 상황일 경우 상담을 통해<br />
+        <strong>관할 주민센터로 연계 요청</strong>이 가능합니다.<br />
+        제도 문의, 지원 가능성 판단 등을 도와드립니다.
+      </p>
+      <a href="tel:129" class="apply-button" id="applyBtn">
+        📞 보건복지상담<br>129 전화 연결
+      </a>
+      <p class="pc-note">💡 PC에서는 직접 휴대전화로 129에 전화해주세요.</p>
     </div>
 
     <div class="card" id="links">
@@ -104,6 +118,7 @@
     </div>
 
   </div>
+
   <footer>ⓒ 2025 도지나비 - 실용 웹도구 모음</footer>
   <script src="script.js"></script>
 </body>
