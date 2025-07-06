@@ -1,3 +1,13 @@
+/* 1. 전체 box-sizing 통일 & 가로 스크롤 방지 */
+html, body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* 2. 기본 페이지 스타일 */
 body {
   font-family: 'Noto Sans KR', sans-serif;
   background: #eef4f8;
@@ -5,14 +15,18 @@ body {
   padding: 0;
   color: #222;
 }
+
+/* 3. 컨테이너: 양 옆 1rem 패딩 추가 */
 .container {
   max-width: 960px;
   margin: 100px auto;
-  padding: 30px;
+  padding: 30px 1rem; /* 기존 30px → 30px 1rem */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
+
+/* 4. 제목 및 설명 */
 h1 {
   font-size: 26px;
   color: #0a4d74;
@@ -26,9 +40,11 @@ h1 {
   color: #444;
   line-height: 1.6;
 }
+
+/* 5. 검색 입력창: 폭 100% 고정, 최대폭 해제 */
 #searchInput {
-  width: 100%;
-  max-width: 420px;
+  width: 100%;          /* 화면 폭 가득 채우기 */
+  max-width: 100%;      /* 기존 max-width:420px 해제 */
   margin: 0 auto 24px;
   padding: 14px 18px;
   display: block;
@@ -36,7 +52,10 @@ h1 {
   border-radius: 8px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-sizing: border-box;
 }
+
+/* 6. 테이블 래퍼: 자체 스크롤 */
 .table-wrapper {
   overflow-x: auto;
 }
@@ -65,6 +84,8 @@ h1 {
 #contactsTable td.phone:hover {
   background: #e1f0ff;
 }
+
+/* 7. 토스트 */
 #toast {
   position: fixed;
   bottom: 40px;
@@ -78,17 +99,12 @@ h1 {
   display: none;
   z-index: 9999;
 }
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-  margin: 60px 0 30px;
-}
+
+/* 8. 홈 버튼 */
 .home-button {
   position: fixed;
   top: 12px;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   margin: auto;
   width: fit-content;
   padding: 14px 24px;
@@ -99,7 +115,6 @@ footer {
   font-weight: 600;
   font-size: 1.3em;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
   z-index: 999;
 }
@@ -111,11 +126,9 @@ footer {
 .home-button::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.4);
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: rgba(255,255,255,0.4);
   transform: skewX(-30deg);
   animation: shine 3s infinite;
 }
@@ -123,4 +136,12 @@ footer {
   0%   { left: -75%; }
   50%  { left: 125%; }
   100% { left: -75%; }
+}
+
+/* 9. 푸터 */
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin: 60px 0 30px;
 }
