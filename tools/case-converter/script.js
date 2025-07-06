@@ -1,35 +1,77 @@
-// script.js
-
 const inputEl = document.getElementById("inputText");
 const outputEl = document.getElementById("outputText");
 
-document.getElementById("upperBtn").addEventListener("click", () => {
-  outputEl.value = inputEl.value.toUpperCase();
-});
+const buttons = {
+  upper: document.getElementById("upperBtn"),
+  lower: document.getElementById("lowerBtn"),
+  cap: document.getElementById("capBtn"),
+  toggle: document.getElementById("toggleBtn")
+};
 
-document.getElementById("lowerBtn").addEventListener("click", () => {
-  outputEl.value = inputEl.value.toLowerCase();
-});
+function toggleState(buttonKey) {
+  const clickedBtn = buttons[buttonKey];
+  const isActive = clickedBtn.classList.contains("active");
 
-document.getElementById("capBtn").addEventListener("click", () => {
-  // 먼저 모두 소문자로 변환한 뒤, 문장 시작 혹은 . ! ? 뒤의 첫 영문자만 대문자로
-  const text = inputEl.value.toLowerCase();
-  const result = text.replace(
-    /(^\s*|[\.!\?]\s*)([a-z])/g,
-    (match, lead, ch) => lead + ch.toUpperCase()
-  );
-  outputEl.value = result;
-});
+  // 모든 버튼 초기화
+  Object.values(buttons).forEach(btn => {
+    btn.classList.remove("active");
+    btn.classList.add("inactive");
+  });
 
-document.getElementById("toggleBtn").addEventListener("click", () => {
-  const toggled = [...inputEl.value]
-    .map(ch => (ch === ch.toUpperCase() ? ch.toLowerCase() : ch.toUpperCase()))
-    .join("");
-  outputEl.value = toggled;
-});
+  // 다시 누르면 해제
+  if (!isActive) {
+    clickedBtn.classList.add("active");
+    clickedBtn.classList.remove("inactive");
+    applyConversion(buttonKey);
+  } else {
+    outputEl.value = "";
+  }
+}
 
+function applyConversion(key) {
+  const text = inputEl.value;
+
+  switch (key) {
+    case "upper":
+      outputEl.value = text.toUpperCase();
+      break;
+    case "lower":
+      outputEl.value = text.toLowerCase();
+      break;
+    case "cap":
+      outputEl.value = text.toLowerCase().replace(
+        /(^\s*|[\.!\?]\s*)([a-z])/g,
+        (match, lead, ch) => lead + ch.toUpperCase()
+      );
+      break;
+    case "toggle":
+      outputEl.value = [...text]
+        .map(ch => (ch === ch.toUpperCase() ? ch.toLowerCase() : ch.toUpperCase()))
+        .join("");
+      break;
+  }
+}
+
+// 이벤트 연결
+buttons.upper.addEventListener("click", () => toggleState("upper"));
+buttons.lower.addEventListener("click", () => toggleState("lower"));
+buttons.cap.addEventListener("click", () => toggleState("cap"));
+buttons.toggle.addEventListener("click", () => toggleState("toggle"));
+
+// 복사 + 토스트 알림
 document.getElementById("copyBtn").addEventListener("click", () => {
   outputEl.select();
   document.execCommand("copy");
-  alert("결과가 클립보드에 복사되었습니다!");
+  showToast("결과가 클립보드에 복사되었습니다!");
 });
+
+// ✅ 토스트 함수
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
+}
