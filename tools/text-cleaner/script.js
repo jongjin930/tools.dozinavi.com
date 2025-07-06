@@ -39,27 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 상태 토글 및 포커스 제거
+      // 상태 토글 (포커스 제거는 주석 처리 중)
       btn.setAttribute('data-active', isActive ? 'false' : 'true');
-      btn.blur(); // 포커스 제거 → 색상 잔상 방지
+      // btn.blur(); // 필요 시 다시 활성화
     });
   });
 });
 
 document.getElementById('cleanBtn').addEventListener('click', () => {
-  // 1. 텍스트 가져오기
   let text = document.getElementById('inputText').value;
 
-  // 2. 글자 수 경고
   if (text.length > 50000) {
     alert("입력된 텍스트가 많아 정리 속도가 느릴 수 있습니다.");
   }
 
-  // 3. 옵션 상태 가져오는 헬퍼 함수
   const get = key =>
     document.querySelector(`.opt-btn[data-key="${key}"]`).getAttribute('data-active') === 'true';
 
-  // 4. 각 옵션 상태 체크
   const keepLines = get('keepLine');
   const rmEmpty   = get('removeEmpty');
   const collapse  = get('collapse');
@@ -68,7 +64,6 @@ document.getElementById('cleanBtn').addEventListener('click', () => {
   const rmAll     = get('removeAll');
   const rmLine    = get('removeLine');
 
-  // 5. 정리 로직
   if (rmTabs) text = text.replace(/\t/g, '');
   if (rmAll) {
     text = text.replace(/\s+/g, '');
@@ -84,7 +79,6 @@ document.getElementById('cleanBtn').addEventListener('click', () => {
     text = text.replace(/[\r\n]+/g, '');
   }
 
-  // 6. 출력
   document.getElementById('outputText').value = text;
 });
 

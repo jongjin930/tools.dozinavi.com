@@ -119,19 +119,17 @@ textarea {
   opacity: 0.5 !important;
 }
 
-/* hover/focus 효과 제거 */
-.opt-btn[data-active="true"]:hover,
-.opt-btn[data-active="true"]:focus,
-.opt-btn[data-active="true"]:active,
-.opt-btn[data-active="true"]:focus-visible,
-.opt-btn[data-active="false"]:hover,
-.opt-btn[data-active="false"]:focus,
-.opt-btn[data-active="false"]:active,
-.opt-btn[data-active="false"]:focus-visible {
-  background-color: inherit !important;
-  border-color: inherit !important;
-  box-shadow: inherit !important;
+/* hover 효과 */
+.opt-btn:hover {
+  background-color: #c0e9ff;
+  border-color: #66ccff;
+  box-shadow: 0 0 4px rgba(0, 128, 192, 0.2);
+}
+
+/* 포커스 효과 */
+.opt-btn:focus {
   outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 128, 192, 0.4) !important;
 }
 
 /* 옵션 하단 구분선 */
