@@ -130,6 +130,13 @@ button:hover {
   animation: shine 3s infinite;
 }
 
+.memo-copy {
+  background-color: #2196F3;
+}
+.memo-copy:hover {
+  background-color: #1976D2;
+}
+
 @keyframes shine {
   0%   { left: -75%; }
   50%  { left: 125%; }

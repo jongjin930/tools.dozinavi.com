@@ -35,13 +35,18 @@ function loadMemos() {
         <strong>${preview}</strong>
       </div>
       <div>
+        <button class="memo-copy" data-index="${index}">복사</button>
         <button class="memo-download" data-index="${index}">다운</button>
         <button class="memo-delete" data-index="${index}">삭제</button>
       </div>
     `;
 
     li.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("memo-delete") && !e.target.classList.contains("memo-download")) {
+      if (
+        !e.target.classList.contains("memo-delete") &&
+        !e.target.classList.contains("memo-download") &&
+        !e.target.classList.contains("memo-copy")
+      ) {
         memoArea.value = item.content;
         lastSaved.textContent = formattedDate;
       }
@@ -85,6 +90,15 @@ memoList.addEventListener("click", (e) => {
     const memo = memos[index];
     const filename = `메모_${formatDate(memo.timestamp).replace(/[\s.:]/g, "-")}.txt`;
     downloadText(filename, memo.content);
+  }
+
+  if (e.target.classList.contains("memo-copy")) {
+    const memo = memos[index];
+    navigator.clipboard.writeText(memo.content).then(() => {
+      alert("메모가 클립보드에 복사되었습니다.");
+    }).catch(() => {
+      alert("복사에 실패했습니다.");
+    });
   }
 });
 
