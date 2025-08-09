@@ -1,0 +1,96 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>로또 번호 생성기</title>
+  <meta name="description" content="로또 번호 생성기 - 랜덤, 번호 제외, 번호 지정, 5세트 조합, 고정 패턴 제공">
+  <meta property="og:title" content="로또 번호 생성기 - 도지나비 도구" />
+  <meta property="og:description" content="로또 번호 생성기 - 다양한 방식으로 번호를 생성하고 저장하세요." />
+  <meta property="og:image" content="https://tools.dozinavi.com/lotto/og-image.png" />
+  <meta property="og:url" content="https://tools.dozinavi.com/lotto" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 홈 버튼 템플릿 -->
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <div class="container">
+
+    <!-- 결과창 -->
+    <div id="result-container">
+      <h2>생성된 번호</h2>
+      <div id="result"></div>
+      <button id="save-btn" class="save-button">저장</button>
+    </div>
+
+    <!-- 탭 인터페이스 -->
+    <div class="tabs">
+      <!-- 1. 번호 생성 -->
+      <div class="tab active" data-tab="single">
+        <h3>번호 생성</h3>
+        <div class="content">
+          <div class="mode-buttons">
+            <button class="mode-btn active" data-mode="random">랜덤</button>
+            <button class="mode-btn" data-mode="exclude">번호 제외</button>
+            <button class="mode-btn" data-mode="include">번호 지정</button>
+          </div>
+          <div id="number-picker" class="picker"></div>
+          <div class="btn-group">
+            <button id="generate-btn">생성</button>
+            <button id="reset-btn">초기화</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 5세트 → 조합 -->
+      <div class="tab" data-tab="set">
+        <h3>5세트 → 조합</h3>
+        <div class="content">
+          <button id="generate-sets-combo-btn">5세트 &amp; 조합</button>
+          <div id="sets-container" class="sets"></div>
+        </div>
+      </div>
+
+      <!-- 3. 고정 패턴 생성 -->
+      <div class="tab" data-tab="pattern">
+        <h3>고정 패턴 생성</h3>
+        <div class="content">
+          <div class="pattern-buttons">
+            <button class="pattern-toggle" data-pattern="odd-even">홀수 3개 &amp; 짝수 3개</button>
+            <button class="pattern-toggle" data-pattern="low-high">1–22번 3개 &amp; 23–45번 3개</button>
+          </div>
+          <button id="generate-pattern-btn">패턴 생성</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 저장된 번호 (최하단) -->
+    <div id="history-container">
+      <h3>저장된 번호</h3>
+
+      <!-- 구분된 노란 주의 박스 -->
+      <div id="save-warning">
+        ⚠️ 저장된 번호는 이 브라우저의 로컬 저장소에만 보관됩니다.<br/>
+        다른 브라우저/기기에서는 보이지 않으며, 캐시 삭제·시크릿 모드 사용 시 사라질 수 있습니다.<br/>
+        최대 20개까지만 저장됩니다.
+      </div>
+
+      <ul id="history-list"></ul>
+      
+      <!-- 내보내기/전체삭제 버튼 -->
+<div class="history-actions">
+  <button id="export-history-btn" class="btn">📄 TXT로 내보내기</button>
+  <button id="clear-history-btn" class="btn danger">🗑 전체 삭제</button>
+</div>
+
+    </div>
+
+  </div>
+
+  <!-- 토스트 메시지 -->
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
