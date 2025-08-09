@@ -15,14 +15,13 @@
      crossorigin="anonymous"></script>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMS35N4NDB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XMS35N4NDB');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMS35N4NDB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMS35N4NDB');
+  </script>
   
   <style>
     /* ─ 기본 페이지 스타일 ─ */
@@ -50,8 +49,8 @@
     }
     .control-buttons {
       display: flex;
-      justify-content: center;  /* 버튼을 가로 중앙에 정렬 */
-      flex-wrap: wrap;          /* 화면이 좁아지면 자동으로 줄바꿈 */
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 16px;
       margin: 1rem 0;
     }
@@ -67,9 +66,7 @@
       border-bottom: 1px solid #ddd;
       padding: 0.8rem 0;
     }
-    .tool-item:last-child {
-      border-bottom: none;
-    }
+    .tool-item:last-child { border-bottom: none; }
     .tool-item a {
       display: flex;
       align-items: center;
@@ -88,17 +85,16 @@
       margin-right: 1rem;
       flex-shrink: 0;
     }
-    .tool-text strong {
-      font-size: 1rem;
-    }
-    .tool-text span {
-      font-size: 0.9rem;
-      color: #555;
-    }
+    .tool-text strong { font-size: 1rem; }
+    .tool-text span { font-size: 0.9rem; color: #555; }
+
     .category-calc  { background: #7bbbe0;  color: #1b4f72; }
     .category-write { background: #f4b183;  color: #7e5109; }
     .category-tools { background: #a9dfbf;  color: #1d5a38; }
     .category-aid   { background: #d2b4f2;  color: #5e3b84; }
+    /* ★ 새 카테고리: 취미·확률 도구(로또) */
+    .category-fun   { background: #ffe599;  color: #7a4f00; }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -112,9 +108,7 @@
       border-bottom: 1px solid #ccc;
       margin-top: 1rem;
     }
-    .accordion:first-child {
-      margin-top: 0;
-    }
+    .accordion:first-child { margin-top: 0; }
     .accordion-header {
       display: flex;
       justify-content: space-between;
@@ -125,23 +119,17 @@
       transition: background 0.2s;
       font-size: 1.2rem;
     }
-    .accordion-header:hover {
-      background: #f2f2f2;
-    }
+    .accordion-header:hover { background: #f2f2f2; }
     .accordion-header::after {
       content: '▸';
       transition: transform 0.2s;
     }
-    .accordion.open .accordion-header::after {
-      transform: rotate(90deg);
-    }
+    .accordion.open .accordion-header::after { transform: rotate(90deg); }
     .accordion-content {
       display: none;
       padding: 0 0.8rem 1rem;
     }
-    .accordion.open .accordion-content {
-      display: block;
-    }
+    .accordion.open .accordion-content { display: block; }
 
     /* ─ 카테고리별 헤더 스트라이프 & 텍스트 컬러 ─ */
     .accordion.write .accordion-header {
@@ -160,6 +148,11 @@
       border-left: 4px solid #d2b4f2;
       color: #5e3b84;
     }
+    /* ★ 새 아코디언 톤: 취미·확률 도구(로또) */
+    .accordion.fun .accordion-header {
+      border-left: 4px solid #ffe599;
+      color: #7a4f00;
+    }
 
     /* ─ 3D 버튼 스타일 ─ */
     .btn-expand, .btn-collapse {
@@ -176,12 +169,8 @@
         0 3px 6px rgba(0, 0, 0, 0.15),
         0 1px 2px rgba(0, 0, 0, 0.05);
     }
-    .btn-expand {
-      background: linear-gradient(to bottom, #eaf3fd, #6aa7e9);
-    }
-    .btn-expand:hover {
-      background: linear-gradient(to bottom, #d6eafd, #3b82f6);
-    }
+    .btn-expand { background: linear-gradient(to bottom, #eaf3fd, #6aa7e9); }
+    .btn-expand:hover { background: linear-gradient(to bottom, #d6eafd, #3b82f6); }
     .btn-expand:active {
       background: linear-gradient(to bottom, #bcdcfb, #3475d6);
       transform: translateY(1px);
@@ -189,12 +178,8 @@
         inset 0 2px 3px rgba(0,0,0,0.2),
         0 1px 1px rgba(0,0,0,0.1);
     }
-    .btn-collapse {
-      background: linear-gradient(to bottom, #ede7f6, #9e84d4);
-    }
-    .btn-collapse:hover {
-      background: linear-gradient(to bottom, #e5def2, #8e70c7);
-    }
+    .btn-collapse { background: linear-gradient(to bottom, #ede7f6, #9e84d4); }
+    .btn-collapse:hover { background: linear-gradient(to bottom, #e5def2, #8e70c7); }
     .btn-collapse:active {
       background: linear-gradient(to bottom, #cab3e4, #7e57c2);
       transform: translateY(1px);
@@ -273,6 +258,24 @@
         <li class="tool-item"><a href="/emergency-welfare"><div class="tool-icon category-aid">🚨</div><div class="tool-text"><strong>긴급 복지지원 안내</strong><br><span>위기상황 시 지원 제도</span></div></a></li>
         <li class="tool-item"><a href="/basic-welfare"><div class="tool-icon category-aid">🧍</div><div class="tool-text"><strong>기초생활보장 안내</strong><br><span>수급자 요건 및 지원내역</span></div></a></li>
         <li class="tool-item"><a href="/org-contacts/"><div class="tool-icon category-aid">📇</div><div class="tool-text"><strong>전국 관공서 전화번호 조회</strong><br><span>주민센터·교육청 검색</span></div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ★ 새 섹션: 취미·확률 도구(로또) -->
+  <div class="accordion fun">
+    <div class="accordion-header">🎯 취미·확률 도구</div>
+    <div class="accordion-content">
+      <ul class="tool-list">
+        <li class="tool-item">
+          <a href="/lotto">
+            <div class="tool-icon category-fun">🍀</div>
+            <div class="tool-text">
+              <strong>로또 번호 생성기</strong><br>
+              <span>제외·포함·패턴·5세트·QR 저장</span>
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
