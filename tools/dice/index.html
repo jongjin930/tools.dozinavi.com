@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>주사위 던지기 | 실용 웹도구</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="스포트라이트 아래에서 실제처럼 굴러가는 3D 주사위! 1~4개 동시 굴리기와 합계/히스토리를 제공합니다." />
+    <meta property="og:title" content="주사위 던지기 | 실용 웹도구" />
+  <meta property="og:description" content="중앙 스테이지 + 핀 조명 + 실제 같은 3D 굴림. 결과는 ⚀+⚄+… 식과 합계를 큼직하게 표시." />
+  <!-- ✅ OG 이미지 경로 수정 -->
+  <meta property="og:image" content="https://tools.dozinavi.com/dice/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://tools.dozinavi.com/dice/" />
+  <meta property="og:type" content="website" />
+
+  <meta name="theme-color" content="#667eea" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a2e" />
+
+  <!-- (선택) AdSense / gtag 필요 시 유지 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6187864051704055" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMS35N4NDB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-XMS35N4NDB');
+  </script>
+
+  <!-- Pretendard -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- 🏠 다른 도구 더 보기 (템플릿 규칙: body 직후) -->
+  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
+
+  <header class="page-header">
+    <h1>주사위 던지기</h1>
+    <p class="subtitle">스테이지를 클릭하거나 아래 버튼으로 굴려보세요.</p>
+  </header>
+
+  <main class="container" role="main">
+    <!-- 중앙 스테이지 -->
+    <section class="stage-wrap" aria-label="주사위 스테이지">
+      <div class="stage" id="stage" tabindex="0" role="button" aria-label="주사위 스테이지 (클릭/Enter로 굴리기)">
+        <!-- 핀 조명 + 바닥 -->
+        <div class="pinlight"></div>
+        <div class="floor"></div>
+
+        <!-- 주사위 영역 (항상 중앙 정렬) -->
+        <div class="dice-area" id="diceArea" aria-live="polite" aria-label="주사위 영역"><!-- JS 삽입 --></div>
+
+        <!-- 하단 컨트롤 바 (스테이지 안쪽 하단 고정) -->
+        <div class="stage-controls" aria-label="설정 및 동작">
+          <label for="diceCount" class="label">주사위</label>
+          <select id="diceCount" class="select" aria-label="주사위 개수 선택">
+            <option value="1">1개</option>
+            <option value="2">2개</option>
+            <option value="3">3개</option>
+            <option value="4" selected>4개</option>
+          </select>
+          <button id="rollBtn" class="btn primary big" aria-label="주사위 굴리기 (Enter)">🎲 굴리기</button>
+          <button id="clearBtn" class="btn" aria-label="결과 지우기">🧹 결과 지우기</button>
+        </div>
+
+        <!-- 상단 힌트 (가독성 강화) -->
+        <div class="stage-hint">스테이지를 클릭해도 굴러갑니다</div>
+      </div>
+
+      <!-- 결과: 스테이지 바로 아래 큼직하게 -->
+      <div class="result-stack">
+        <div class="result-line" id="resultLine" aria-label="주사위 식">-</div>
+        <div class="sum-big" id="sumBig" aria-label="합계">—</div>
+      </div>
+    </section>
+
+    <section class="history" aria-label="히스토리">
+      <h2>최근 결과</h2>
+      <ol id="historyList" class="history-list"></ol>
+      <p class="note">※ 엔터테인먼트용 도구입니다.</p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>ⓒ 2025 tools.dozinavi.com</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
