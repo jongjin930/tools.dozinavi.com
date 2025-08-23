@@ -1,11 +1,15 @@
 // script.js
 
-// 전역 상태
+// ===== 전역 상태 =====
 let mode = 'random';
-let includeNumbers = [], excludeNumbers = [], lastSets = [];
+
+// ✅ 공통 선택 상태(지정/제외 공용) — 한 번 찍으면 두 모드에서 그대로 사용
+const selectedNumbers = new Set();
+
+let lastSets = [];
 let oddEven = false, lowHigh = false;
 
-// 탭 전환
+// ===== 탭 전환 =====
 document.querySelectorAll('.tab').forEach(tab => {
   tab.querySelector('h3').addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -13,7 +17,7 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
-// 토스트 메시지
+// ===== 토스트 =====
 function showToast(msg) {
   const toast = document.getElementById('toast');
   toast.textContent = msg;
@@ -21,16 +25,18 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 1500);
 }
 
-// 모드 버튼 이벤트
+// ===== 모드 버튼 =====
 document.querySelectorAll('.mode-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     mode = btn.dataset.mode;
+    // 표시만 바뀜(선택 상태 자체는 유지)
+    updatePickerStyles();
   });
 });
 
-// 번호 선택기 세팅
+// ===== 번호 선택기 =====
 function setupPicker() {
   const picker = document.getElementById('number-picker');
   picker.innerHTML = '';
@@ -41,76 +47,73 @@ function setupPicker() {
     span.dataset.num = i;
     span.addEventListener('click', () => {
       const num = +span.dataset.num;
-      if (mode === 'include') {
-        if (includeNumbers.includes(num)) {
-          includeNumbers = includeNumbers.filter(x => x !== num);
-          span.classList.remove('include');
-        } else {
-          includeNumbers.push(num);
-          span.classList.add('include');
-          excludeNumbers = excludeNumbers.filter(x => x !== num);
-          span.classList.remove('exclude');
-        }
-      } else if (mode === 'exclude') {
-        if (excludeNumbers.includes(num)) {
-          excludeNumbers = excludeNumbers.filter(x => x !== num);
-          span.classList.remove('exclude');
-        } else {
-          excludeNumbers.push(num);
-          span.classList.add('exclude');
-          includeNumbers = includeNumbers.filter(x => x !== num);
-          span.classList.remove('include');
-        }
-      }
+      if (selectedNumbers.has(num)) selectedNumbers.delete(num);
+      else selectedNumbers.add(num);
+      updatePickerStyles();
     });
     picker.appendChild(span);
   }
+  updatePickerStyles();
 }
 
-// 결과 렌더링
+// 모드에 따라 선택 색상만 변경
+function updatePickerStyles() {
+  document.querySelectorAll('.picker-ball').forEach(el => {
+    const n = +el.dataset.num;
+    el.classList.remove('include', 'exclude');
+    if (selectedNumbers.has(n)) {
+      if (mode === 'exclude') el.classList.add('exclude');
+      else el.classList.add('include'); // include/random은 초록
+    }
+  });
+}
+
+// ===== 결과 렌더링 (3D + 회전) =====
 function renderResult(nums) {
   const container = document.getElementById('result');
   container.innerHTML = '';
   nums.forEach(n => {
     const ball = document.createElement('div');
     ball.textContent = n;
-    ball.classList.add('ball');
+    ball.classList.add('ball', 'roll');
     if (n <= 10) ball.classList.add('blue');
     else if (n <= 20) ball.classList.add('green');
     else if (n <= 30) ball.classList.add('orange');
     else if (n <= 40) ball.classList.add('gray');
     else ball.classList.add('pink');
     container.appendChild(ball);
+    ball.addEventListener('animationend', () => ball.classList.remove('roll'), { once: true });
   });
 }
 
-// 랜덤/제외/지정 한 세트 생성
+// ===== 단일 세트 생성 =====
 function generateSingle() {
-  let pool = Array.from({length:45},(_,i)=>i+1)
-    .filter(n => !excludeNumbers.includes(n));
-  
-let nums = [];
-if (mode === 'include') {
-  if (includeNumbers.length > 6) {
-    // 6개 초과 시 랜덤으로 6개 선택
-    const shuffled = [...includeNumbers].sort(() => Math.random() - 0.5);
-    nums = shuffled.slice(0, 6);
-  } else {
-    nums = [...includeNumbers];
+  // 제외 목록(현재 모드가 exclude이면 선택값을 제외로 사용)
+  const excludeArr = (mode === 'exclude') ? Array.from(selectedNumbers) : [];
+  let pool = Array.from({length:45},(_,i)=>i+1).filter(n => !excludeArr.includes(n));
+
+  let nums = [];
+  if (mode === 'include') {
+    const includeArr = Array.from(selectedNumbers);
+    if (includeArr.length > 6) {
+      const shuffled = [...includeArr].sort(() => Math.random() - 0.5);
+      nums = shuffled.slice(0, 6);
+    } else {
+      nums = [...includeArr];
+    }
   }
-} else {
-  nums = [];
-}
 
   while (nums.length < 6 && pool.length) {
     const idx = Math.floor(Math.random() * pool.length);
-    nums.push(pool.splice(idx,1)[0]);
+    const pick = pool.splice(idx,1)[0];
+    if (!nums.includes(pick)) nums.push(pick);
   }
+
   nums.sort((a,b)=>a-b);
   renderResult(nums);
 }
 
-// 5세트 & 조합 생성
+// ===== 5세트 & 조합 =====
 function generateSetsCombo() {
   lastSets = [];
   const container = document.getElementById('sets-container');
@@ -149,7 +152,7 @@ function generateSetsCombo() {
   }, 500);
 }
 
-// 고정 패턴 옵션 토글
+// ===== 고정 패턴 토글 =====
 document.querySelectorAll('.pattern-toggle').forEach(btn => {
   btn.addEventListener('click', () => {
     btn.classList.toggle('active');
@@ -159,7 +162,7 @@ document.querySelectorAll('.pattern-toggle').forEach(btn => {
   });
 });
 
-// 고정 패턴 생성
+// ===== 고정 패턴 생성 =====
 function generatePattern() {
   if (!oddEven && !lowHigh) return showToast('패턴을 하나 이상 선택하세요.');
   let nums = [];
@@ -186,7 +189,7 @@ function generatePattern() {
   renderResult(nums);
 }
 
-// 저장된 기록 불러오기
+// ===== 저장 내역 =====
 function loadHistory() {
   const hist = JSON.parse(localStorage.getItem('lotto_history')||'[]');
   const list = document.getElementById('history-list');
@@ -195,7 +198,6 @@ function loadHistory() {
   hist.forEach((item, idx) => {
     const li = document.createElement('li');
 
-    // 왼쪽: 번호 + 메타
     const left = document.createElement('div');
     const numsText = item.nums.map(n => String(n).padStart(2,'0')).join(', ');
     const numsSpan = document.createElement('span');
@@ -206,7 +208,6 @@ function loadHistory() {
     left.appendChild(numsSpan);
     left.appendChild(metaSpan);
 
-    // 오른쪽: 개별 삭제 버튼
     const delBtn = document.createElement('button');
     delBtn.className = 'delete-btn';
     delBtn.textContent = '삭제';
@@ -224,8 +225,7 @@ function loadHistory() {
   });
 }
 
-
-// 타입 감지
+// 타입 태그
 function detectCurrentType() {
   const t = document.querySelector('.tab.active h3').textContent;
   if (t.includes('제외')) return '번호제외';
@@ -235,11 +235,10 @@ function detectCurrentType() {
   return '랜덤';
 }
 
-// TXT로 내보내기
+// TXT 내보내기/전체 삭제
 function exportHistoryTxt() {
   const hist = JSON.parse(localStorage.getItem('lotto_history')||'[]');
   if (!hist.length) return showToast('내보낼 저장 내역이 없습니다.');
-
   const lines = hist.map(item => {
     const nums = item.nums.map(n => String(n).padStart(2,'0')).join(', ');
     return `${nums} | ${item.time} | ${item.type}`;
@@ -256,8 +255,6 @@ function exportHistoryTxt() {
   URL.revokeObjectURL(url);
   showToast('TXT로 내보냈습니다.');
 }
-
-// 전체 삭제
 function clearHistoryAll() {
   const hist = JSON.parse(localStorage.getItem('lotto_history')||'[]');
   if (!hist.length) return showToast('삭제할 저장 내역이 없습니다.');
@@ -267,17 +264,18 @@ function clearHistoryAll() {
   showToast('전체 삭제되었습니다.');
 }
 
-// 버튼 바인딩
+// ===== 이벤트 바인딩 =====
 document.getElementById('export-history-btn').addEventListener('click', exportHistoryTxt);
 document.getElementById('clear-history-btn').addEventListener('click', clearHistoryAll);
 
-// 이벤트 바인딩
 document.getElementById('generate-btn').addEventListener('click', generateSingle);
 document.getElementById('reset-btn').addEventListener('click', () => {
-  includeNumbers=[]; excludeNumbers=[]; document.querySelectorAll('.picker-ball').forEach(s=>s.classList.remove('include','exclude'));
+  selectedNumbers.clear();
+  updatePickerStyles();
 });
 document.getElementById('generate-sets-combo-btn').addEventListener('click', generateSetsCombo);
 document.getElementById('generate-pattern-btn').addEventListener('click', generatePattern);
+
 document.getElementById('save-btn').addEventListener('click', () => {
   const nums = Array.from(document.querySelectorAll('#result .ball')).map(b=>+b.textContent);
   if (nums.length!==6) return showToast('저장할 번호가 없습니다.');
@@ -291,7 +289,7 @@ document.getElementById('save-btn').addEventListener('click', () => {
   showToast('저장되었습니다.');
 });
 
-// 초기 실행
+// ===== 초기화 =====
 window.addEventListener('load', () => {
   setupPicker();
   loadHistory();

@@ -13,29 +13,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 홈 버튼 템플릿 -->
+  <!-- 홈 버튼 (항상 고정) -->
   <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
 
   <div class="container">
 
-    <!-- 결과창 -->
-    <div id="result-container">
+    <!-- 결과 패널 -->
+    <div id="result-container" class="result-panel">
       <h2>생성된 번호</h2>
-      <div id="result"></div>
+      <div id="result" class="result-3d"></div>
       <button id="save-btn" class="save-button">저장</button>
     </div>
 
-    <!-- 탭 인터페이스 -->
+    <!-- 탭 -->
     <div class="tabs">
       <!-- 1. 번호 생성 -->
       <div class="tab active" data-tab="single">
-        <h3>번호 생성</h3>
+        <h3><span>🎲</span> 번호 생성</h3>
         <div class="content">
-          <div class="mode-buttons">
+          <div class="pill-group">
             <button class="mode-btn active" data-mode="random">랜덤</button>
             <button class="mode-btn" data-mode="exclude">번호 제외</button>
             <button class="mode-btn" data-mode="include">번호 지정</button>
           </div>
+
+          <p class="note-inline">
+            ✍️ 내가 찍어둔 번호는 <strong>지정/제외에서 공통</strong>으로 사용됩니다. (초기화 전까지 유지)
+          </p>
+
           <div id="number-picker" class="picker"></div>
           <div class="btn-group">
             <button id="generate-btn">생성</button>
@@ -46,7 +51,7 @@
 
       <!-- 2. 5세트 → 조합 -->
       <div class="tab" data-tab="set">
-        <h3>5세트 → 조합</h3>
+        <h3><span>🧩</span> 5세트 → 조합</h3>
         <div class="content">
           <button id="generate-sets-combo-btn">5세트 &amp; 조합</button>
           <div id="sets-container" class="sets"></div>
@@ -55,41 +60,35 @@
 
       <!-- 3. 고정 패턴 생성 -->
       <div class="tab" data-tab="pattern">
-        <h3>고정 패턴 생성</h3>
+        <h3><span>📐</span> 고정 패턴 생성</h3>
         <div class="content">
-          <div class="pattern-buttons">
+          <div class="pattern-buttons center">
             <button class="pattern-toggle" data-pattern="odd-even">홀수 3개 &amp; 짝수 3개</button>
             <button class="pattern-toggle" data-pattern="low-high">1–22번 3개 &amp; 23–45번 3개</button>
           </div>
-          <button id="generate-pattern-btn">패턴 생성</button>
+          <button id="generate-pattern-btn" class="centered">패턴 생성</button>
         </div>
       </div>
     </div>
 
-    <!-- 저장된 번호 (최하단) -->
+    <!-- 저장된 번호 -->
     <div id="history-container">
       <h3>저장된 번호</h3>
-
-      <!-- 구분된 노란 주의 박스 -->
       <div id="save-warning">
         ⚠️ 저장된 번호는 이 브라우저의 로컬 저장소에만 보관됩니다.<br/>
         다른 브라우저/기기에서는 보이지 않으며, 캐시 삭제·시크릿 모드 사용 시 사라질 수 있습니다.<br/>
         최대 20개까지만 저장됩니다.
       </div>
-
       <ul id="history-list"></ul>
-      
-      <!-- 내보내기/전체삭제 버튼 -->
-<div class="history-actions">
-  <button id="export-history-btn" class="btn">📄 TXT로 내보내기</button>
-  <button id="clear-history-btn" class="btn danger">🗑 전체 삭제</button>
-</div>
-
+      <div class="history-actions">
+        <button id="export-history-btn" class="btn">📄 TXT로 내보내기</button>
+        <button id="clear-history-btn" class="btn danger">🗑 전체 삭제</button>
+      </div>
     </div>
 
   </div>
 
-  <!-- 토스트 메시지 -->
+  <!-- 토스트 -->
   <div id="toast"></div>
   <script src="script.js"></script>
 </body>
