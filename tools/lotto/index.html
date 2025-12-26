@@ -1,95 +1,376 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="dark">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>로또 번호 생성기</title>
-  <meta name="description" content="로또 번호 생성기 - 랜덤, 번호 제외, 번호 지정, 5세트 조합, 고정 패턴 제공">
-  <meta property="og:title" content="로또 번호 생성기 - 무료 실용 웹도구" />
-  <meta property="og:description" content="로또 번호 생성기 - 다양한 방식으로 번호를 생성하고 저장하세요." />
-  <meta property="og:image" content="https://tools.dozinavi.com/lotto/og-image.png" />
-  <meta property="og:url" content="https://tools.dozinavi.com/lotto" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golden Lotto Premium - 로또 번호 생성기</title>
+  <meta name="description" content="프리미엄 로또 번호 생성기. 3D 시뮬레이션, 제외수/고정수 필터, 패턴 분석을 통한 최고의 번호 조합." />
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6187864051704055"
+    crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            darkbg: '#0b1121', /* Deeper dark for premium feel */
+            panel: '#151e32',
+            surface: '#1e293b'
+          },
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          boxShadow: {
+            'neon-gold': '0 0 15px rgba(245, 158, 11, 0.3)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+          }
+        },
+      },
+    }
+  </script>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- 홈 버튼 (항상 고정) -->
-  <a href="/" class="home-button">🏠 다른 도구 더 보기</a>
 
-  <div class="container">
+<body
+  class="bg-darkbg text-slate-100 font-sans selection:bg-gold-500 selection:text-white min-h-screen flex flex-col overflow-x-hidden">
 
-    <!-- 결과 패널 -->
-    <div id="result-container" class="result-panel">
-      <h2>생성된 번호</h2>
-      <div id="result" class="result-3d"></div>
-      <button id="save-btn" class="save-button">저장</button>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full bg-darkbg/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg">
+    <div class="max-w-[1600px] mx-auto px-4 h-16 flex items-center justify-between">
+      <!-- Left: More Tools (Updated with Sheen & Pulse) -->
+      <a href="/"
+        class="relative group overflow-hidden rounded-full bg-surface border border-slate-700 px-5 py-2 flex items-center gap-2 hover:border-gold-500/50 transition-colors shadow-lg animate-[pulse_3s_infinite]">
+        <span
+          class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shine pointer-events-none"></span>
+        <span
+          class="material-symbols-outlined text-[20px] text-gold-400 group-hover:text-gold-300 transition-colors">apps</span>
+        <span class="text-sm font-bold text-slate-200 group-hover:text-white transition-colors">다른 도구 더 보기</span>
+      </a>
+
+      <!-- Center/Right: Brand -->
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <span class="material-symbols-outlined text-gold-500 text-[28px] drop-shadow-md">casino</span>
+          <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-500"></span>
+          </span>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight text-white hidden sm:block">Golden <span
+            class="text-gold-500">Lotto</span></h1>
+      </div>
     </div>
+  </header>
 
-    <!-- 탭 -->
-    <div class="tabs">
-      <!-- 1. 번호 생성 -->
-      <div class="tab active" data-tab="single">
-        <h3><span>🎲</span> 번호 생성</h3>
-        <div class="content">
-          <div class="pill-group">
-            <button class="mode-btn active" data-mode="random">랜덤</button>
-            <button class="mode-btn" data-mode="exclude">번호 제외</button>
-            <button class="mode-btn" data-mode="include">번호 지정</button>
+  <!-- Main Layout -->
+  <div class="flex-1 w-full max-w-[1600px] mx-auto flex flex-col xl:flex-row relative pt-6">
+
+    <!-- Left Ad (PC) -->
+    <aside class="hidden xl:flex w-[180px] flex-col items-center sticky top-24 h-[fit-content] shrink-0 z-10 mr-6">
+      <!-- Fixed dimensions 160x600, transparent -->
+      <div class="ad-container w-[160px] h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- Google AdSense -->
+        <ins class="adsbygoogle" style="display:block;width:160px;height:600px" data-ad-client="ca-pub-6187864051704055"
+          data-ad-slot="SIDEBAR_LEFT_ID"></ins>
+      </div>
+    </aside>
+
+    <!-- Center Content -->
+    <main class="flex-1 px-3 sm:px-4 min-w-0 w-full flex flex-col gap-8 pb-20">
+
+      <!-- Top Ad REMOVED to shift layout up -->
+
+      <!-- STAGE SECTION: 3D Machine Effect -->
+      <section class="relative w-full max-w-4xl mx-auto z-10">
+        <!-- Glass Panel Background -->
+        <div class="absolute inset-0 bg-panel rounded-[2rem] shadow-glass border border-slate-700/50"></div>
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.1)_0%,transparent_60%)] rounded-[2rem]">
+        </div>
+
+        <div class="relative z-10 p-6 sm:p-10 flex flex-col items-center">
+
+          <!-- Main Display Area (The "Machine") -->
+          <div id="machine-stage"
+            class="w-full min-h-[220px] sm:min-h-[280px] bg-darkbg rounded-2xl border-2 border-slate-700/50 shadow-inner flex flex-col items-center justify-center relative overflow-hidden mb-8 transition-all">
+            <!-- Decor: Grid Lines -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none"
+              style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 20px 20px;">
+            </div>
+            <!-- Decor: Glow -->
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gold-500/5 blur-[80px] rounded-full pointer-events-none">
+            </div>
+
+            <!-- Result Balls Container -->
+            <div id="result-container"
+              class="relative z-20 flex flex-wrap justify-center gap-3 sm:gap-5 p-4 min-h-[80px]">
+              <div class="text-slate-500 text-sm sm:text-base animate-pulse font-medium">
+                행운의 번호를 생성해보세요
+              </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading-spinner"
+              class="hidden absolute inset-0 z-30 flex items-center justify-center bg-darkbg/80 backdrop-blur-sm">
+              <div class="relative">
+                <div class="w-16 h-16 border-4 border-slate-700 border-t-gold-500 rounded-full animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-gold-500 animate-pulse">casino</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <p class="note-inline">
-            ✍️ 내가 찍어둔 번호는 <strong>지정/제외에서 공통</strong>으로 사용됩니다. (초기화 전까지 유지)
-          </p>
+          <!-- Action Button -->
+          <button type="button" id="generate-btn"
+            class="group relative w-full max-w-[320px] h-[64px] rounded-full bg-gradient-to-b from-gold-400 to-gold-600 text-white font-bold text-xl shadow-[0_10px_20px_-5px_rgba(245,158,11,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(245,158,11,0.6)] hover:-translate-y-1 active:translate-y-0.5 transition-all overflow-hidden border-t border-gold-300">
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-shine pointer-events-none"></span>
+            <div class="flex items-center justify-center gap-2 pointer-events-none">
+              <span
+                class="material-symbols-outlined text-3xl group-hover:rotate-180 transition-transform duration-700">sync</span>
+              <span class="tracking-wide">번호 생성 (START)</span>
+            </div>
+          </button>
 
-          <div id="number-picker" class="picker"></div>
-          <div class="btn-group">
-            <button id="generate-btn">생성</button>
-            <button id="reset-btn">초기화</button>
+          <!-- 5 Sets Result (Collapsible) -->
+          <div id="set-result-container"
+            class="hidden w-full mt-6 bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 backdrop-blur-sm animate-fade-in-up">
+            <!-- JS injects content here -->
           </div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-4xl mx-auto z-10">
+
+        <!-- Controls (Left/Top) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+          <!-- Mode Tabs -->
+          <div class="bg-panel rounded-2xl p-2 border border-slate-700/50 flex flex-wrap gap-1 shadow-lg"
+            id="mode-tabs">
+            <button type="button" data-mode="random"
+              class="flex-1 min-w-[80px] py-2.5 rounded-xl text-sm font-bold transition-all bg-gold-500 text-white shadow-md">랜덤</button>
+            <button type="button" data-mode="exclude"
+              class="flex-1 min-w-[80px] py-2.5 rounded-xl text-sm font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">제외수</button>
+            <button type="button" data-mode="include"
+              class="flex-1 min-w-[80px] py-2.5 rounded-xl text-sm font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">고정수</button>
+            <button type="button" data-mode="pattern"
+              class="flex-1 min-w-[80px] py-2.5 rounded-xl text-sm font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">패턴</button>
+            <button type="button" data-mode="set"
+              class="flex-1 min-w-[80px] py-2.5 rounded-xl text-sm font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-700/50">5세트</button>
+          </div>
+
+          <!-- Dynamic Options Area -->
+          <div id="options-area"
+            class="bg-panel rounded-2xl p-6 border border-slate-700/50 min-h-[240px] shadow-lg flex flex-col">
+
+            <!-- Random Intro -->
+            <div id="opt-random" class="flex-1 flex flex-col items-center justify-center text-center p-4">
+              <div
+                class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 border border-slate-700">
+                <span class="material-symbols-outlined text-3xl text-gold-500">shuffle</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-200">완전 무작위 추천</h3>
+              <p class="text-sm text-slate-400 mt-2">가장 순수한 확률에 기반하여<br>행운의 번호를 추출합니다.</p>
+            </div>
+
+            <!-- Number Selector (Exclude/Include) -->
+            <div id="opt-selector" class="hidden w-full h-full flex flex-col">
+              <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-700/50">
+                <span id="selector-msg" class="text-sm font-bold text-slate-300">번호 선택</span>
+                <button type="button" id="reset-selector"
+                  class="text-xs px-2 py-1 rounded bg-slate-700 text-slate-300 hover:bg-red-500/20 hover:text-red-400 transition-colors">전체
+                  해제</button>
+              </div>
+              <div id="number-grid" class="grid grid-cols-7 sm:grid-cols-9 gap-2">
+                <!-- JS Injected -->
+              </div>
+            </div>
+
+            <!-- Pattern Config (Expanded) -->
+            <div id="opt-pattern" class="hidden w-full flex flex-col gap-3">
+              <div class="text-sm text-slate-400 mb-2 font-medium">원하는 패턴을 선택하세요 (다중 선택 가능)</div>
+
+              <!-- Odd/Even -->
+              <label
+                class="group flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-gold-500/50 cursor-pointer transition-all select-none">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+                    <span class="material-symbols-outlined text-lg">contrast</span>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold text-slate-200 group-hover:text-gold-400">홀짝 밸런스 (3:3)</div>
+                    <div class="text-[10px] text-slate-500">홀수/짝수 균등 배분</div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="checkbox" id="chk-oddeven" class="peer sr-only">
+                  <div
+                    class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-gold-500">
+                  </div>
+                </div>
+              </label>
+
+              <!-- Low/High -->
+              <label
+                class="group flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-gold-500/50 cursor-pointer transition-all select-none">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
+                    <span class="material-symbols-outlined text-lg">stairs</span>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold text-slate-200 group-hover:text-gold-400">고저 밸런스 (3:3)</div>
+                    <div class="text-[10px] text-slate-500">1-22 / 23-45 균등 배분</div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="checkbox" id="chk-lowhigh" class="peer sr-only">
+                  <div
+                    class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-gold-500">
+                  </div>
+                </div>
+              </label>
+
+              <!-- Sum Filter (New) -->
+              <label
+                class="group flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-gold-500/50 cursor-pointer transition-all select-none">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400">
+                    <span class="material-symbols-outlined text-lg">functions</span>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold text-slate-200 group-hover:text-gold-400">총합 구간 필터</div>
+                    <div class="text-[10px] text-slate-500">6개 번호의 합을 100~175 사이로 제한</div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="checkbox" id="chk-sum" class="peer sr-only">
+                  <div
+                    class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-gold-500">
+                  </div>
+                </div>
+              </label>
+
+              <!-- Consecutive Filter (New) -->
+              <label
+                class="group flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-gold-500/50 cursor-pointer transition-all select-none">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center text-red-400">
+                    <span class="material-symbols-outlined text-lg">do_not_step</span>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold text-slate-200 group-hover:text-gold-400">연속 번호 제한</div>
+                    <div class="text-[10px] text-slate-500">3개 이상의 연속된 숫자(예: 1,2,3) 제외</div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <input type="checkbox" id="chk-consecutive" class="peer sr-only">
+                  <div
+                    class="w-9 h-5 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-gold-500">
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <!-- Set Analysis -->
+            <div id="opt-set" class="hidden flex-1 flex flex-col items-center justify-center text-center p-4">
+              <div
+                class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 border border-slate-700">
+                <span class="material-symbols-outlined text-3xl text-green-500">layers</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-200">5세트 시뮬레이션</h3>
+              <p class="text-sm text-slate-400 mt-2">5번의 가상 추첨을 진행한 뒤<br>가장 확률 높은 조합을 분석합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- History (Right/Bottom) -->
+        <div class="lg:col-span-4 h-full">
+          <div class="bg-panel rounded-2xl border border-slate-700/50 shadow-lg flex flex-col h-full">
+            <div
+              class="p-4 border-b border-slate-700/50 flex justify-between items-center bg-slate-800/30 rounded-t-2xl">
+              <h3 class="font-bold text-slate-200 flex items-center gap-2">
+                <span class="material-symbols-outlined text-gold-500 text-sm">history</span> 히스토리
+              </h3>
+              <button type="button" id="clear-history"
+                class="p-1.5 rounded-lg hover:bg-slate-700 text-slate-400 hover:text-red-400 transition-colors"
+                title="기록 삭제">
+                <span class="material-symbols-outlined text-lg">delete</span>
+              </button>
+            </div>
+            <!-- Constrained Max Height for scrolling -->
+            <div id="history-list" class="flex-1 overflow-y-auto p-3 space-y-2 custom-scrollbar max-h-[320px]">
+              <!-- Items -->
+              <div class="flex flex-col items-center justify-center h-full text-slate-500 gap-2 opacity-60">
+                <span class="material-symbols-outlined text-4xl">inbox</span>
+                <span class="text-xs">저장된 기록이 없습니다</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Ad -->
+      <div class="w-full flex justify-center mt-8">
+        <!-- Fixed height 90px, transparent -->
+        <div class="ad-container w-full max-w-[728px] h-[90px] flex items-center justify-center overflow-hidden">
+          <!-- Google AdSense -->
+          <ins class="adsbygoogle" style="display:block;width:728px;height:90px"
+            data-ad-client="ca-pub-6187864051704055" data-ad-slot="BANNER_BOTTOM_ID"></ins>
         </div>
       </div>
 
-      <!-- 2. 5세트 → 조합 -->
-      <div class="tab" data-tab="set">
-        <h3><span>🧩</span> 5세트 → 조합</h3>
-        <div class="content">
-          <button id="generate-sets-combo-btn">5세트 &amp; 조합</button>
-          <div id="sets-container" class="sets"></div>
-        </div>
-      </div>
+      <!-- Footer -->
+      <footer class="mt-auto pt-8 border-t border-slate-800/50 text-center">
+        <p class="text-slate-400 text-xs">© 2024 Golden Lotto Premium. All rights reserved.</p>
+        <p class="text-slate-600 text-[10px] mt-1">본 서비스의 번호 생성 결과는 확률에 기반하며 당첨을 보장하지 않습니다.</p>
+      </footer>
 
-      <!-- 3. 고정 패턴 생성 -->
-      <div class="tab" data-tab="pattern">
-        <h3><span>📐</span> 고정 패턴 생성</h3>
-        <div class="content">
-          <div class="pattern-buttons center">
-            <button class="pattern-toggle" data-pattern="odd-even">홀수 3개 &amp; 짝수 3개</button>
-            <button class="pattern-toggle" data-pattern="low-high">1–22번 3개 &amp; 23–45번 3개</button>
-          </div>
-          <button id="generate-pattern-btn" class="centered">패턴 생성</button>
-        </div>
-      </div>
-    </div>
+    </main>
 
-    <!-- 저장된 번호 -->
-    <div id="history-container">
-      <h3>저장된 번호</h3>
-      <div id="save-warning">
-        ⚠️ 저장된 번호는 이 브라우저의 로컬 저장소에만 보관됩니다.<br/>
-        다른 브라우저/기기에서는 보이지 않으며, 캐시 삭제·시크릿 모드 사용 시 사라질 수 있습니다.<br/>
-        최대 20개까지만 저장됩니다.
+    <!-- Right Ad (PC) -->
+    <aside class="hidden xl:flex w-[180px] flex-col items-center sticky top-24 h-[fit-content] shrink-0 z-10 ml-6">
+      <!-- Fixed dimensions 160x600, transparent -->
+      <div class="ad-container w-[160px] h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- Google AdSense -->
+        <ins class="adsbygoogle" style="display:block;width:160px;height:600px" data-ad-client="ca-pub-6187864051704055"
+          data-ad-slot="SIDEBAR_RIGHT_ID"></ins>
       </div>
-      <ul id="history-list"></ul>
-      <div class="history-actions">
-        <button id="export-history-btn" class="btn">📄 TXT로 내보내기</button>
-        <button id="clear-history-btn" class="btn danger">🗑 전체 삭제</button>
-      </div>
-    </div>
+    </aside>
 
   </div>
 
-  <!-- 토스트 -->
-  <div id="toast"></div>
+  <!-- Toast -->
+  <div id="toast"
+    class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] border border-slate-700 flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-10 pointer-events-none z-[100] backdrop-blur-md">
+    <span class="material-symbols-outlined text-green-500">check_circle</span>
+    <span id="toast-msg" class="font-medium text-sm">알림 메시지</span>
+  </div>
+
+  <!-- Main Logic -->
   <script src="script.js"></script>
 </body>
+
 </html>

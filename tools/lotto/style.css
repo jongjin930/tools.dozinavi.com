@@ -1,237 +1,203 @@
-/* style.css — 패턴 토글 가시성 강화, 중앙 정렬, 결과 배경 개선, 모바일 넘침 해결 */
+/* Reset & Base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* 기본 */
-*{ box-sizing: border-box; }
-html, body { width:100%; }
-body{
-  margin:0; padding:0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
-  background:#f5f7fb;
-  overflow-x:hidden; /* 모바일 가로 넘침 방지 */
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-.container{ max-width:680px; width:100%; margin:86px auto 24px; padding:0 14px; }
 
-/* 홈 버튼 */
-.home-button{
-  position:fixed; top:12px; left:0; right:0; margin:auto;
-  width:fit-content; padding:14px 24px; border-radius:10px;
-  background:#0066cc; color:#fff; text-decoration:none; font-weight:600; font-size:1.3em;
-  box-shadow:0 6px 12px rgba(0,0,0,.3); transition:.3s; z-index:999;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.5);
 }
-.home-button:hover{ background:#004999; transform:translateY(-3px); box-shadow:0 8px 16px rgba(0,0,0,.5); }
-.home-button::before{
-  content:""; position:absolute; top:0; left:-75%; width:50%; height:100%;
-  background:rgba(255,255,255,.4); transform:skewX(-30deg); animation:shine 3s infinite;
-}
-@keyframes shine{0%{left:-75%}50%{left:125%}100%{left:-75%}}
-@media (max-width:600px){ .home-button{ font-size:1.1em; padding:10px 16px; top:10px; } }
 
-/* 결과 패널 — 배경을 밋밋하지 않게(라디얼 + 도트 패턴 레이어) */
-.result-panel {
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Animations */
+
+/* 1. Button Shine Effect */
+@keyframes shine {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shine {
+  animation: shine 2s infinite;
+  /* Slowed down slightly for smoother effect */
+}
+
+/* 2. Fade In Up (General UI) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* 3. Stage Shake (Thinking Phase) */
+@keyframes shakeStage {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.animate-shake {
+  animation: shakeStage 0.5s infinite;
+}
+
+/* 4. Ball Pop (Appearance) */
+@keyframes popIn {
+  0% {
+    transform: scale(0) translateY(50px) rotate(-180deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1) translateY(-10px) rotate(10deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* Ball Styles */
+.lotto-ball {
   position: relative;
-  background:
-    radial-gradient(600px 400px at 30% -10%, rgba(255,99,132,0.35), transparent 70%),
-    radial-gradient(700px 500px at 80% 110%, rgba(54,162,235,0.30), transparent 70%),
-    #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(31,38,135,0.08),
-              inset 0 0 0 1px rgba(255,255,255,0.6);
-  margin-bottom: 18px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  /* Deep 3D Shadow */
+  box-shadow:
+    inset -5px -5px 12px rgba(0, 0, 0, 0.6),
+    inset 5px 5px 12px rgba(255, 255, 255, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s;
+  opacity: 0;
+  /* Hidden by default until animation runs */
 }
 
-#result-container h2{ margin:0 0 12px; }
-.result-3d{ perspective:700px; }
-#result{
-  display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-bottom:10px;
+/* Specular Reflection */
+.lotto-ball::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 35%;
+  height: 20%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  filter: blur(1px);
 }
 
-/* 결과 공(3D) */
-.ball{
-  width:50px; height:50px; line-height:50px; border-radius:50%;
-  text-align:center; font-weight:900; color:#fff; position:relative; isolation:isolate;
-  box-shadow: inset 0 -8px 12px rgba(0,0,0,.20), 0 12px 24px rgba(0,0,0,.10);
-  transform-style:preserve-3d;
-}
-.ball::after{
-  content:""; position:absolute; inset:0; border-radius:50%;
-  background: radial-gradient(120% 110% at 30% 25%, rgba(255,255,255,.88) 0%, rgba(255,255,255,0) 44%);
-  pointer-events:none; mix-blend-mode:screen;
-}
-.ball::before{
-  content:""; position:absolute; left:50%; transform:translateX(-50%);
-  bottom:-10px; width:62%; height:10px; border-radius:50%; filter:blur(6px); background:rgba(0,0,0,.22); z-index:-1;
-}
-.ball.blue   { background:linear-gradient(180deg,#45a7f0 0%,#2f80d1 100%); }
-.ball.green  { background:linear-gradient(180deg,#4cd783 0%,#2cb36b 100%); }
-.ball.orange { background:linear-gradient(180deg,#f29d4a 0%,#d8751a 100%); }
-.ball.gray   { background:linear-gradient(180deg,#a5b3b9 0%,#8b969c 100%); }
-.ball.pink   { background:linear-gradient(180deg,#f06ba3 0%,#da4f8d 100%); }
-.ball.roll{ animation:spinIn .6s cubic-bezier(.2,.6,.2,1) both; }
-@keyframes spinIn{ 0%{ transform:rotateY(-540deg) scale(.82); opacity:0; } 100%{ transform:rotateY(0) scale(1); opacity:1; } }
-
-/* 탭 */
-.tabs{ display:flex; flex-direction:column; gap:12px; }
-.tab{ background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 12px 30px rgba(31,38,135,0.06), inset 0 0 0 1px rgba(255,255,255,0.6); }
-.tab h3{
-  margin:0; padding:14px 16px; text-align:center; cursor:pointer; user-select:none;
-  background:linear-gradient(180deg,#f6f8fc 0%,#eef2f9 100%); border-bottom:1px solid #e6eaf3;
-  font-weight:800; display:flex; align-items:center; justify-content:center; gap:8px;
-}
-.tab .content{ display:none; padding:16px; }
-.tab.active h3{ background:linear-gradient(180deg,#eaf3ff 0%,#e0ecff 100%); }
-.tab.active .content{ display:block; }
-
-/* 모드 버튼 (Pill) */
-.pill-group{
-  display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
-  padding:2px; background:#f2f5fb; border-radius:999px; border:1px solid #e6ebf4;
-}
-.mode-btn{
-  appearance:none; border:0; padding:9px 14px; font-weight:800; border-radius:999px; background:transparent; color:#0b63b6; cursor:pointer;
-}
-.mode-btn.active{ background:#0b63b6; color:#fff; }
-
-/* 안내 */
-.note-inline{ margin:8px 0 6px; font-size:13px; color:#475569; text-align:center; }
-
-/* 번호 선택기 — 모바일 넘침 해결 */
-.picker{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
-  gap:8px; max-height:260px; overflow-y:auto; margin:10px 0;
-}
-.picker-ball{
-  width:100%; aspect-ratio:1/1; border-radius:50%;
-  border:1px solid #cfd6e3; display:flex; align-items:center; justify-content:center;
-  background:#fff; color:#1f2937; font-weight:700;
-  transition: transform .1s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
-}
-.picker-ball:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.08); }
-.picker-ball.include{ background:#10b981; color:#fff; border-color:#10b981; }
-.picker-ball.exclude{ background:#ef4444; color:#fff; border-color:#ef4444; }
-
-/* 버튼 그룹 */
-.btn-group{ text-align:center; margin-top:10px; }
-.btn-group button{ margin:0 6px; }
-
-/* 5세트 */
-.sets{ display:flex; flex-direction:column; gap:10px; }
-.set{ display:flex; align-items:center; gap:10px; }
-#sets-container .set .ball.highlight{
-  transform: translateZ(0) scale(1.06);
-  box-shadow:0 0 0 3px #ffffff, 0 0 0 6px #0d6efd, 0 8px 18px rgba(13,110,253,.35);
+/* Colors with rich gradients */
+.ball-1-10 {
+  background: radial-gradient(circle at 35% 35%, #facc15, #b45309);
+  color: #451a03;
+  border: 1px solid #fbbf24;
 }
 
-/* 고정 패턴 — 중앙 정렬 & 활성 가시성 강화 */
-.pattern-buttons{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
-.pattern-buttons.center{ justify-content:center; }
-.pattern-toggle{
-  appearance:none; min-height:44px; padding:10px 14px; border-radius:12px;
-  border:2px solid #3498db; background:#fff; color:#0b63b6; font-weight:800; letter-spacing:.2px; cursor:pointer;
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  transition: transform .12s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
-  box-shadow:0 4px 12px rgba(0,0,0,.06);
-}
-.pattern-toggle:hover{ transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.10); }
-.pattern-toggle:focus-visible{
-  outline:none; box-shadow:0 0 0 3px #ffffff, 0 0 0 6px rgba(13,110,253,.75), 0 10px 22px rgba(0,0,0,.16);
-}
-.pattern-toggle.active{
-  background:linear-gradient(180deg,#4da3ff 0%, #1e7bff 100%); color:#fff; border-color:transparent;
-}
-.pattern-toggle.active::before{
-  content:"✔"; font-weight:900; line-height:1; transform:translateY(-1px);
-}
-/* 패턴 생성 버튼 중앙 */
-#generate-pattern-btn.centered{ display:block; margin:12px auto 0; }
-
-/* 저장 영역 */
-#history-container{ background:#fff; padding:15px; border-radius:16px; box-shadow:0 12px 30px rgba(31,38,135,0.06), inset 0 0 0 1px rgba(255,255,255,0.6); margin-top:20px; }
-#history-container h3{ text-align:center; margin-bottom:10px; }
-#save-warning{ background:#fff8c6; border:1px solid #f1c40f; border-radius:10px; padding:14px; margin:0 0 12px; font-size:14px; line-height:1.5; }
-#history-list{ list-style:none; padding:0; margin:0; font-size:14px; max-height:200px; overflow-y:auto; }
-#history-list li{ display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-bottom:1px solid #eef2f7; }
-#history-list .meta{ color:#667085; font-size:12px; margin-left:8px; }
-.history-actions{ display:flex; gap:8px; justify-content:center; margin-top:10px; }
-.btn{
-  padding:9px 14px; border:1px solid #dde3ee; border-radius:10px; background:#fff; cursor:pointer; font-weight:700;
-  box-shadow:0 6px 14px rgba(0,0,0,.06);
-}
-.btn:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(0,0,0,.10); }
-.btn.danger{ background:#e74c3c; color:#fff; border-color:#e74c3c; }
-#history-list .delete-btn{ margin-left:8px; padding:2px 8px; font-size:12px; border:1px solid #dde3ee; background:#fff; border-radius:6px; cursor:pointer; }
-
-/* 액션 버튼 공통 */
-#generate-btn,
-#reset-btn,
-#generate-sets-combo-btn,
-#generate-pattern-btn{
-  appearance:none; display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:12px 16px; min-height:44px; border-radius:12px; border:none; font-weight:800; font-size:16px; line-height:1; cursor:pointer;
-  box-shadow:0 10px 22px rgba(36,99,235,0.12); transform:translateY(0);
-  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-}
-#generate-btn:hover,
-#reset-btn:hover,
-#generate-sets-combo-btn:hover,
-#generate-pattern-btn:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(36,99,235,0.16); filter:brightness(1.02); }
-#generate-btn:active,
-#reset-btn:active,
-#generate-sets-combo-btn:active,
-#generate-pattern-btn:active{ transform:translateY(0); box-shadow:0 6px 14px rgba(36,99,235,0.12); }
-#generate-btn:focus-visible,
-#reset-btn:focus-visible,
-#generate-sets-combo-btn:focus-visible,
-#generate-pattern-btn:focus-visible{
-  outline:none; box-shadow:0 0 0 3px #ffffff, 0 0 0 6px rgba(13,110,253,.75), 0 10px 24px rgba(0,0,0,.16);
-}
-#generate-btn, #generate-sets-combo-btn{ background:linear-gradient(180deg,#4da3ff 0%, #1e7bff 100%); color:#fff; }
-#reset-btn{ background:linear-gradient(180deg,#f3f4f6 0%,#e5e7eb 100%); color:#111827; box-shadow:0 4px 12px rgba(0,0,0,.08) inset, 0 6px 14px rgba(0,0,0,.10); }
-#generate-pattern-btn{ background:linear-gradient(180deg,#34d399 0%, #10b981 100%); color:#fff; }
-#generate-sets-combo-btn{ display:block; margin:0 auto 10px; }
-
-/* 저장 버튼 */
-.save-button{
-  appearance:none; display:inline-flex; align-items:center; justify-content:center; gap:6px;
-  padding:10px 16px; min-height:44px; border-radius:10px; border:none;
-  background:linear-gradient(180deg,#4da3ff 0%, #1e7bff 100%); color:#fff; font-weight:800; font-size:15px; cursor:pointer;
-  box-shadow:0 6px 14px rgba(0,0,0,.12); transition: transform .15s, box-shadow .15s, filter .15s;
-}
-.save-button:hover{ transform:translateY(-1px); box-shadow:0 10px 20px rgba(0,0,0,.16); filter:brightness(1.03); }
-.save-button:active{ transform:translateY(0); box-shadow:0 4px 10px rgba(0,0,0,.10); }
-.save-button:focus-visible{ outline:none; box-shadow:0 0 0 3px #ffffff, 0 0 0 6px rgba(13,110,253,.75), 0 10px 22px rgba(0,0,0,.16); }
-
-/* 토스트 */
-#toast{
-  position:fixed; bottom:30px; left:50%; transform:translateX(-50%);
-  background:rgba(0,0,0,.85); color:#fff; padding:8px 16px; border-radius:20px; opacity:0; transition:opacity .3s ease; pointer-events:none; font-size:14px; z-index:1000;
-}
-#toast.show{ opacity:1; }
-
-/* 모바일 */
-@media (max-width:420px){
-  .container{ margin:74px auto 16px; padding:0 10px; }
-  .home-button{ padding:8px 12px; font-size:14px; }
-  .ball{ width:44px; height:44px; line-height:44px; font-size:14px; }
-  #generate-btn, #reset-btn, #generate-sets-combo-btn, #generate-pattern-btn{ width:100%; font-size:15px; padding:12px 14px; }
-  .pattern-toggle{ flex:1 1 100%; }
+.ball-11-20 {
+  background: radial-gradient(circle at 35% 35%, #60a5fa, #1e3a8a);
+  color: white;
+  border: 1px solid #3b82f6;
 }
 
-/* =========================================
-   결과 배경 아이디어 (필요시 교체)
-   A. 현재 적용: 라디얼 + 아주 옅은 도트 패턴 (눈부시지 않음)
-   B. 대각선 "LOTTO" 워터마크:
-      .result-panel{ background-image:
-        repeating-linear-gradient(-45deg, rgba(0,0,0,0.02) 0 24px, transparent 24px 48px); }
-   C. 파스텔 네온 링 하이라이트:
-      .result-panel{ background:
-        radial-gradient(400px 200px at 30% -10%, rgba(255,99,132,.12), transparent 60%),
-        radial-gradient(500px 250px at 80% 110%, rgba(54,162,235,.10), transparent 60%),
-        #fff; }
-   D. 미세 종이 질감:
-      .result-panel{ background:
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.035"/></svg>'),
-        #fff; }
-   ========================================= */
+.ball-21-30 {
+  background: radial-gradient(circle at 35% 35%, #f87171, #991b1b);
+  color: white;
+  border: 1px solid #ef4444;
+}
+
+.ball-31-40 {
+  background: radial-gradient(circle at 35% 35%, #94a3b8, #334155);
+  color: white;
+  border: 1px solid #64748b;
+}
+
+.ball-41-45 {
+  background: radial-gradient(circle at 35% 35%, #4ade80, #14532d);
+  color: white;
+  border: 1px solid #22c55e;
+}
+
+/* Selector Grid Buttons */
+.num-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.num-btn:active {
+  transform: scale(0.95);
+}
+
+/* Ad Container Enforcement */
+.ad-container {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
