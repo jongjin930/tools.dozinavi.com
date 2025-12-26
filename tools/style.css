@@ -1,4 +1,20 @@
-/* --- GLOBAL & SCROLLBAR --- */
+/* --- GLOBAL & RESET --- */
+html {
+    overflow-x: hidden;
+    /* Prevent horizontal scroll on root */
+    width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    /* Double protection for mobile */
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Scrollbar Customization */
 ::-webkit-scrollbar {
     width: 8px;
 }

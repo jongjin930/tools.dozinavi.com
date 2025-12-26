@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   <meta name="description" content="글자 수 세기, 계산기, 복지 안내 등 실용적인 무료 웹도구 모음 플랫폼 Dozinavi입니다.">
   <meta property="og:title" content="실용 웹도구 모음 - Dozinavi" />
   <meta property="og:description" content="글자 수 세기, 계산기, 복지 안내 등 생활에 필요한 모든 무료 웹도구를 한곳에서 만나보세요." />
@@ -58,19 +58,10 @@
 
   <!-- Custom CSS (Core Design & Overrides) -->
   <link rel="stylesheet" href="style.css">
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
 </head>
 
 <body
-  class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen overflow-x-hidden flex flex-col">
+  class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
 
   <!-- Header -->
   <header class="sticky top-0 z-50 w-full glass-panel border-b border-slate-200/50 dark:border-slate-800/50">
@@ -122,10 +113,9 @@
 
     <!-- Left Sidebar Ad (PC Only) -->
     <aside class="hidden xl:flex w-[180px] flex-col items-center pt-8 sticky top-16 h-[calc(100vh-4rem)] shrink-0 z-10">
-      <!-- Ad Container: Transparent, Fixed Size for CLS prevention -->
+      <!-- Ad Container -->
       <div class="ad-sidebar-container flex flex-col items-center justify-center">
         <!-- [AD SLOT] Left Sidebar 160x600 -->
-        <!-- data-ad-slot 값을 아래에 입력하세요 -->
         <ins class="adsbygoogle" style="display:block; width:160px; height:600px"
           data-ad-client="ca-pub-6187864051704055" data-ad-slot="SIDEBAR_LEFT_ID"></ins>
       </div>
@@ -133,17 +123,6 @@
 
     <!-- Main Content Area -->
     <main class="flex-1 px-4 sm:px-6 py-6 md:py-8 min-w-0 w-full">
-
-      <!-- Top Banner Ad -->
-      <div class="w-full flex justify-center mb-8 md:mb-12">
-        <!-- Ad Container: Transparent, Fixed Size for CLS prevention -->
-        <div class="ad-banner-container flex flex-col items-center justify-center">
-          <!-- [AD SLOT] Top Banner 728x90 -->
-          <!-- data-ad-slot 값을 아래에 입력하세요 -->
-          <ins class="adsbygoogle" style="display:block; width:728px; height:90px"
-            data-ad-client="ca-pub-6187864051704055" data-ad-slot="BANNER_TOP_ID"></ins>
-        </div>
-      </div>
 
       <!-- Tools Container (Populated by JS) -->
       <div id="tools-container" class="max-w-5xl mx-auto space-y-12 min-h-[400px]">
@@ -162,10 +141,9 @@
       <!-- Bottom Banner Ad -->
       <div class="mt-12 md:mt-20">
         <div class="w-full flex justify-center mb-8 md:mb-12">
-          <!-- Ad Container: Transparent, Fixed Size for CLS prevention -->
+          <!-- Ad Container -->
           <div class="ad-banner-container flex flex-col items-center justify-center">
             <!-- [AD SLOT] Bottom Banner 728x90 -->
-            <!-- data-ad-slot 값을 아래에 입력하세요 -->
             <ins class="adsbygoogle" style="display:block; width:728px; height:90px"
               data-ad-client="ca-pub-6187864051704055" data-ad-slot="BANNER_BOTTOM_ID"></ins>
           </div>
@@ -192,10 +170,9 @@
 
     <!-- Right Sidebar Ad (PC Only) -->
     <aside class="hidden xl:flex w-[180px] flex-col items-center pt-8 sticky top-16 h-[calc(100vh-4rem)] shrink-0 z-10">
-      <!-- Ad Container: Transparent, Fixed Size for CLS prevention -->
+      <!-- Ad Container -->
       <div class="ad-sidebar-container flex flex-col items-center justify-center">
         <!-- [AD SLOT] Right Sidebar 160x600 -->
-        <!-- data-ad-slot 값을 아래에 입력하세요 -->
         <ins class="adsbygoogle" style="display:block; width:160px; height:600px"
           data-ad-client="ca-pub-6187864051704055" data-ad-slot="SIDEBAR_RIGHT_ID"></ins>
       </div>
